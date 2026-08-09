@@ -1,0 +1,20 @@
+# Geheimhaltungen & Schlüssel
+*.p12
+*.jks
+*.keystore
+*.asc.private
+config.yml
+config.py
+
+# Temporäre Ordner & Caches
+/tmp/
+/build/
+/cache/
+/.fdroidvcs/
+/.vagrant/
+.env
+
+# Systemdateien
+.DS_Store
+Thumbs.db
+

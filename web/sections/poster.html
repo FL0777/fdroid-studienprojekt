@@ -1,0 +1,28 @@
+<!-- SECTION 1: PROJEKT POSTER -->
+<section id="poster" class="content-section">
+    <article class="poster-card">
+        <div class="section-header-bar">
+            <h2 class="section-header-title">
+                <i class="fas fa-file-pdf" style="color: #FF5252;"></i>
+                <span>Projekt Poster / Dokumentation</span>
+            </h2>
+            <div class="poster-actions">
+                <button onclick="fitPosterWidth()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;" title="Poster auf Viewer-Breite anpassen">
+                    <i class="fas fa-arrows-left-right"></i> Seitenbreite
+                </button>
+                <button onclick="openPdfFullscreen()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">
+                    <i class="fas fa-expand"></i> Vollbild / Neuer Tab
+                </button>
+                <a href="./web/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
+                    <i class="fas fa-download"></i> PDF Download
+                </a>
+            </div>
+        </div>
+
+        <!-- Nahtlose Poster Rendering-Area (HTML5 Canvas via PDF.js oder native IFrame) -->
+        <div id="poster-container" class="poster-canvas-container">
+            <canvas id="poster-canvas" class="poster-canvas" title="Klick für Vollbildansicht"></canvas>
+            <iframe id="poster-object-fallback" src="./web/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
+        </div>
+    </article>
+</section>

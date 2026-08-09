@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <title>Smart Plant Pot • Studienprojekt F-Droid Repo</title>
+    <meta name="description" content="Offizielle Landing Page für das Studienprojekt Smart Plant Pot (Automatisierte Pflanzenbewässerung): Projektposter, App Showcase & App-Installation.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- PDF.js Library for Seamless Frameless Poster Rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- Marked.js Library for Markdown Docs Rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="./web/css/style.css">
+    <link rel="icon" type="image/png" href="./repo/com.example.studienprojekt/en-US/icon.png">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="brand">
+                <img id="nav-app-icon" class="brand-icon-img" src="./repo/com.example.studienprojekt/en-US/icon.png" alt="Smart Plant Pot Logo" onerror="this.src='./web/repo_icon.png'">
+                <span>Smart Plant Pot</span>
+                <button class="brand-share-btn" onclick="openShareModal()" title="Seite teilen / QR-Code" aria-label="Seite teilen">
+                    <i class="fas fa-share-nodes"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="javascript:void(0)" onclick="openDocsModal('about')" class="nav-link">Über</a></li>
+                <li><a href="#poster" class="nav-link">Projekt Poster</a></li>
+                <li><a href="#app-showcase" class="nav-link">App Showcase</a></li>
+                <li><a href="#installation" class="nav-link">App-Installation</a></li>
+                <li>
+                    <a href="https://github.com/FL0777/studienprojekt-fdroid" target="_blank" class="btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        
+        <!-- Hero Header -->
+        <header class="hero">
+            <h1 class="hero-title">Smart Plant Pot</h1>
+            <p class="hero-subtitle">
+                Eigenes CAD-designtes Topfsystem für perfekte Elektronikintegration mit IoT-Sensorik und App-Steuerung zur automatisierten Pflanzenbewässerung.
+            </p>
+
+            <!-- Subtler / Discreet Project Notice Pill -->
+            <div class="project-notice-pill" onclick="openDocsModal('about')" title="Klick für Projekt- &amp; Rechtsdetails">
+                <i class="fas fa-graduation-cap" style="color: var(--primary-color);"></i>
+                <span>Studienprojekt &amp; Privater Gebrauch</span>
+                <span class="pill-more-link">Details &rarr;</span>
+            </div>
+
+            <!-- Quick Scroll Anchors -->
+            <div class="tab-nav">
+                <a href="#poster" class="tab-btn">
+                    <i class="fas fa-file-pdf"></i> Projekt Poster
+                </a>
+                <a href="#app-showcase" class="tab-btn">
+                    <i class="fas fa-mobile-alt"></i> App Showcase
+                </a>
+                <a href="#installation" class="tab-btn">
+                    <i class="fas fa-download"></i> App-Installation
+                </a>
+            </div>
+        </header>
+
+        <!-- SECTION 1: PROJEKT POSTER (Ganz oben, nahtlos ohne PDF Reader UI) -->
+        <section id="poster" class="content-section">
+            <article class="poster-card">
+                <div class="section-header-bar">
+                    <h2 class="section-header-title">
+                        <i class="fas fa-file-pdf" style="color: #FF5252;"></i>
+                        <span>Projekt Poster / Dokumentation</span>
+                    </h2>
+                    <div class="poster-actions">
+                        <button onclick="fitPosterWidth()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;" title="Poster auf Viewer-Breite anpassen">
+                            <i class="fas fa-arrows-left-right"></i> Seitenbreite
+                        </button>
+                        <button onclick="openPdfFullscreen()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">
+                            <i class="fas fa-expand"></i> Vollbild / Neuer Tab
+                        </button>
+                        <a href="./web/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
+                            <i class="fas fa-download"></i> PDF Download
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Nahtlose Poster Rendering-Area (HTML5 Canvas via PDF.js oder native IFrame) -->
+                <div id="poster-container" class="poster-canvas-container">
+                    <canvas id="poster-canvas" class="poster-canvas" title="Klick für Vollbildansicht"></canvas>
+                    <iframe id="poster-object-fallback" src="./web/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 2: APP SHOWCASE (Im Anschluss unten) -->
+        <section id="app-showcase" class="content-section">
+            <article class="app-card">
+                <div class="section-header-bar">
+                    <h2 class="section-header-title">
+                        <i class="fas fa-mobile-alt" style="color: var(--primary-color);"></i>
+                        <span>App Showcase</span>
+                    </h2>
+                    <span class="section-header-subtitle">Detaillierter App-Überblick &amp; Dokumentation</span>
+                </div>
+
+                <!-- Feature Banner -->
+                <img class="feature-banner" src="./metadata/com.example.studienprojekt/en-US/images/featureGraphic.png" alt="Smart Plant Pot Banner" onerror="this.style.display='none'">
+                
+                <!-- App Header -->
+                <div class="app-header">
+                    <img id="dyn-app-icon" class="app-icon" src="./repo/com.example.studienprojekt/en-US/icon.png" alt="App Icon">
+                    <div class="app-meta">
+                        <h2 id="dyn-app-name" class="app-name">Smart Plant Pot</h2>
+                        <span id="dyn-app-package" class="app-package">com.example.studienprojekt</span>
+                        <p id="dyn-app-summary" class="app-summary">Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerung</p>
+                        <div class="app-tags">
+                            <span class="tag"><i class="fas fa-tag"></i> studienprojekt-repo</span>
+                            <span class="tag"><i class="fas fa-scale-balanced"></i> Open Source</span>
+                            <span class="tag"><i class="fab fa-android"></i> Android 9.0+</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Bar -->
+                <div class="action-bar">
+                    <a href="#installation" class="btn-download">
+                        <i class="fas fa-download"></i> Zur App-Installation & Repo
+                    </a>
+                </div>
+
+                <!-- App Description -->
+                <h3 class="section-title"><i class="fas fa-align-left"></i> Beschreibung</h3>
+                <div id="dyn-app-description" class="app-description">
+Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerung. Das Projekt beinhaltet die Entwicklung eines intelligenten Pflanzentopfes mit integrierten Sensoren und Bluetooth-Anbindung an die Android-App.
+                </div>
+
+                <!-- Hauptfunktionen & Highlights Grid -->
+                <h3 class="section-title"><i class="fas fa-star"></i> Hauptfunktionen & Highlights</h3>
+                <div class="features-highlight-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-microchip feature-card-icon"></i>
+                        <h4>Geräteverwaltung & IoT</h4>
+                        <p>Verwaltung mehrerer Pflanzentöpfe mit Microcontroller-Sensoren, einfacher Registrierung & Custom-Namen.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line feature-card-icon"></i>
+                        <h4>Sensordaten & Messwerte</h4>
+                        <p>Messung von Bodenfeuchtigkeit, Temperatur & Luftfeuchtigkeit inkl. historischer Verlaufsdiagramme.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bell feature-card-icon"></i>
+                        <h4>Push-Benachrichtigungen</h4>
+                        <p>Echtzeit-Warnungen via Firebase Cloud Messaging für kritische Wasserstände & Batteriewerte.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-book-open-reader feature-card-icon"></i>
+                        <h4>Pflanzenkatalog</h4>
+                        <p>Umfangreicher Zimmerpflanzen-Katalog mit Pflege-Tipps & hochauflösenden Wikimedia Commons Bildern.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-qrcode feature-card-icon"></i>
+                        <h4>WLAN- & µC-Assistent</h4>
+                        <p>Geführter Hardware-Einrichtungsassistent via QR-Code Scan für schnelle Inbetriebnahme.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-halved feature-card-icon"></i>
+                        <h4>Sicherheit & Cloud</h4>
+                        <p>PostgreSQL-Datenbank auf Supabase-Basis mit Row-Level Security (RLS) & TLS-Verschlüsselung.</p>
+                    </div>
+                </div>
+
+                <!-- Screenshots Gallery (Rahmenlos) -->
+                <h3 class="section-title"><i class="fas fa-images"></i> Screenshots</h3>
+                <div id="dyn-screenshots-gallery" class="screenshots-container">
+                    <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Screenshot 1">
+                    <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Screenshot 2">
+                    <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Screenshot 3">
+                </div>
+
+                <!-- Technical Specs Grid -->
+                <h3 class="section-title"><i class="fas fa-sliders-h"></i> Technische Spezifikationen</h3>
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-label">Version</div>
+                        <div id="spec-version" class="spec-value">0.1.3 (14)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Dateigröße</div>
+                        <div id="spec-size" class="spec-value">57.9 MB</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Zuletzt Aktualisiert</div>
+                        <div id="spec-updated" class="spec-value">09.08.2026</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-label">Ziel-Plattform</div>
+                        <div id="spec-target-sdk" class="spec-value">Android 15 (API 35)</div>
+                    </div>
+                </div>
+
+                <!-- Documentation Cards (Anzeige der info/ Dateiein) -->
+                <h3 class="section-title"><i class="fas fa-folder-open"></i> Dokumente & Lizenzen</h3>
+                <div class="docs-grid">
+                    <div class="doc-card" onclick="openDocsModal('changelog')">
+                        <div>
+                            <div class="doc-card-title"><i class="fas fa-history" style="color: var(--primary-color);"></i> Changelog</div>
+                            <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis v0.1.4 mit allen Änderungen und Bugfixes.</div>
+                        </div>
+                        <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
+                    </div>
+
+                    <div class="doc-card" onclick="openDocsModal('readme')">
+                        <div>
+                            <div class="doc-card-title"><i class="fas fa-file-lines" style="color: var(--primary-color);"></i> Projekt-Handbuch (README)</div>
+                            <div class="doc-card-desc">Vollständiges Handbuch inkl. Installation, Bauanleitung, Supabase Backend & Architektur.</div>
+                        </div>
+                        <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
+                    </div>
+
+                    <div class="doc-card" onclick="openDocsModal('licenses')">
+                        <div>
+                            <div class="doc-card-title"><i class="fas fa-scale-balanced" style="color: var(--primary-color);"></i> Drittanbieter-Hinweise</div>
+                            <div class="doc-card-desc">Übersicht der verwendeten Open-Source Bibliotheken, Lizenzen & Wikimedia Commons Attributierungen.</div>
+                        </div>
+                        <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Permissions Accordion -->
+                <div class="permissions-box">
+                    <div id="permissions-toggle-header" class="permissions-header">
+                        <span><i class="fas fa-shield-alt"></i> Erforderliche App-Berechtigungen</span>
+                        <i id="permissions-toggle-icon" class="fas fa-chevron-down"></i>
+                    </div>
+                    <div id="dyn-permissions-list" class="permissions-list" style="display: none;">
+                        <div class="perm-item"><i class="fab fa-bluetooth-b perm-icon"></i> <span>Bluetooth Verbindungen & Suche</span></div>
+                        <div class="perm-item"><i class="fas fa-camera perm-icon"></i> <span>Kamerazugriff</span></div>
+                        <div class="perm-item"><i class="fas fa-wifi perm-icon"></i> <span>Netzwerk- & Internetzugriff</span></div>
+                        <div class="perm-item"><i class="fas fa-bell perm-icon"></i> <span>Benachrichtigungen senden</span></div>
+                        <div class="perm-item"><i class="fas fa-location-dot perm-icon"></i> <span>Standort (für BLE Geräte-Scan)</span></div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- SECTION 3: APP-INSTALLATION (F-Droid Repo Setup & Direct APK Download) -->
+        <section id="installation" class="content-section">
+            <article class="repo-card">
+                <div class="section-header-bar">
+                    <h2 class="section-header-title">
+                        <i class="fas fa-download" style="color: var(--primary-color);"></i>
+                        <span>App-Installation &amp; F-Droid Repository</span>
+                    </h2>
+                    <span class="section-header-subtitle">Automatische App-Updates via F-Droid Client</span>
+                </div>
+                
+                <div style="padding: 30px;">
+
+                    <!-- F-Droid Explanation Intro Banner -->
+                    <div style="background: #F8FAFC; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 18px 22px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 14px;">
+                        <i class="fab fa-android" style="font-size: 1.8rem; color: #3DDC84; margin-top: 2px; flex-shrink: 0;"></i>
+                        <div>
+                            <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                                Was ist F-Droid &amp; warum wird es empfohlen?
+                            </h4>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55;">
+                                <strong>F-Droid</strong> ist ein lizenzfreier Open-Source App-Store für Android. Über die F-Droid App erhält deine Installation automatische Sicherheits- und Funktions-Updates direkt aus unserem Studienprojekt-Repository.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="fdroid-setup-grid">
+                        
+                        <!-- Box 1: F-Droid Client Installation -->
+                        <div class="setup-box">
+                            <span class="badge-fdroid" style="margin-bottom: 10px;">Schritt 1</span>
+                            <h3><i class="fab fa-android" style="color: #3DDC84;"></i> F-Droid Client App</h3>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; min-height: 48px; text-align: center; line-height: 1.4;">
+                                Falls F-Droid noch nicht installiert ist,<br>lade zuerst die offizielle Client-App herunter:
+                            </p>
+
+                            <div class="qr-box">
+                                <img class="qr-code-img" 
+                                     src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://f-droid.org/de/packages/org.fdroid.fdroid/" 
+                                     alt="F-Droid Client App QR Code">
+                            </div>
+
+                            <a href="https://f-droid.org/de/packages/org.fdroid.fdroid/" target="_blank" class="btn-secondary" style="width: 100%; justify-content: center; margin-top: auto; padding: 10px 12px; font-size: 0.85rem;">
+                                <i class="fas fa-external-link-alt"></i> F-Droid Download-Seite
+                            </a>
+                        </div>
+
+                        <!-- Box 2: Repository Hinzufügen (Assets Repo Icon QR Code) -->
+                        <div class="setup-box">
+                            <span class="badge-fdroid" style="margin-bottom: 10px;">Schritt 2</span>
+                            <h3><i class="fas fa-qrcode" style="color: var(--primary-color);"></i> Repo Hinzufügen</h3>
+                            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; min-height: 48px; text-align: center; line-height: 1.4;">
+                                Scanne diesen QR-Code in F-Droid<br>(<em>Einstellungen &rarr; Paketquellen &rarr; + Icon</em>):
+                            </p>
+
+                            <div class="qr-box">
+                                <img class="qr-code-img" 
+                                     src="./web/repo_icon.png" 
+                                     alt="Studienprojekt Repo QR Code">
+                            </div>
+
+                            <div style="display: flex; gap: 8px; width: 100%; margin-top: auto; flex-wrap: wrap;">
+                                <button class="btn-secondary btn-copy" data-copy-target="repo-url-text" style="flex: 1; min-width: 110px; justify-content: center; padding: 10px 12px; font-size: 0.85rem;">
+                                    <i class="fas fa-copy"></i> Kopieren
+                                </button>
+                                <a href="./repo" target="_blank" class="btn-secondary" style="flex: 1; min-width: 110px; justify-content: center; padding: 10px 12px; font-size: 0.85rem;" title="Repository-URL im Browser öffnen">
+                                    <i class="fas fa-external-link-alt"></i> Öffnen
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                <!-- Manuelle APK-Download Box (Nicht empfohlen Hinweis) -->
+                <div style="margin-top: 30px; text-align: center; background: #F8FAFC; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 22px;">
+                    <h4 style="font-weight: 700; margin-bottom: 6px; color: var(--text-main);">
+                        <i class="fas fa-file-arrow-down" style="color: var(--primary-color);"></i> Direkt-Download der APK-Datei
+                    </h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">
+                        Alternative manuelle Installation direkt ohne F-Droid Client:
+                    </p>
+
+                    <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.85rem; color: #92400E; display: inline-flex; align-items: center; gap: 10px; max-width: 680px; text-align: left;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 1.1rem; flex-shrink: 0; color: #D97706;"></i>
+                        <span><strong>Nicht empfohlen:</strong> Beim Direkt-Download der APK werden <em>keine automatischen App-Updates</em> empfangen. Für automatische Updates verwende bitte die F-Droid Installation (Schritt 1 &amp; 2).</span>
+                    </div>
+
+                    <div>
+                        <a id="dyn-download-btn" href="./repo/studienprojekt_v0.1.3.apk" class="btn-download" style="display: inline-flex;">
+                            <i class="fas fa-download"></i> APK-Datei Direkt Herunterladen (v0.1.3 • 57.9 MB)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hidden element for Step 2 copy button target -->
+                <span id="repo-url-text" style="display:none;">https://fl0777.github.io/studienprojekt-fdroid/repo</span>
+                </div>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- Interactive Markdown Docs Viewer Modal -->
+    <div id="docs-modal" class="modal-overlay">
+        <div class="docs-modal-container">
+            <div class="docs-modal-header">
+                <div id="docs-modal-title" class="docs-modal-title">
+                    <i class="fas fa-book-open"></i> Dokumentation
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="lang-switch">
+                        <button id="lang-btn-de" class="lang-btn active" onclick="switchDocsLanguage('de')">DE</button>
+                        <button id="lang-btn-en" class="lang-btn" onclick="switchDocsLanguage('en')">EN</button>
+                    </div>
+                    <button id="docs-modal-close" class="modal-close" title="Schließen" aria-label="Schließen"><i class="fas fa-xmark"></i></button>
+                </div>
+            </div>
+            <div id="docs-modal-body" class="docs-modal-body">
+                <!-- Rendered Markdown Content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Popup Modal -->
+    <div id="share-modal" class="modal-overlay">
+        <div class="docs-modal-container" style="max-width: 440px;">
+            <div class="docs-modal-header">
+                <div class="docs-modal-title">
+                    <i class="fas fa-share-nodes" style="color: var(--primary-color);"></i> Webseite teilen
+                </div>
+                <button id="share-modal-close" class="modal-close" onclick="closeShareModal()" title="Schließen" aria-label="Schließen"><i class="fas fa-xmark"></i></button>
+            </div>
+            <div class="docs-modal-body" style="padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.4;">
+                    Scanne den QR-Code oder kopiere die URL, um diese Landing Page zu teilen:
+                </p>
+
+                <!-- QR Code Box -->
+                <div style="padding: 12px; border-radius: 16px; background: #F8FAFC; border: 1px solid var(--card-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <img src="./web/github_icon.png" alt="GitHub Pages QR Code" style="width: 190px; height: 190px; object-fit: contain; display: block; border-radius: 8px;">
+                </div>
+
+                <!-- Share URL & Copy Button -->
+                <div style="display: flex; gap: 8px; width: 100%; align-items: center; margin-top: 4px;">
+                    <input type="text" id="share-url-input" readonly value="https://fl0777.github.io/studienprojekt-fdroid/" 
+                           style="flex: 1; min-width: 0; padding: 10px 12px; font-size: 0.82rem; border: 1px solid var(--card-border); border-radius: var(--radius-sm); background: #F8FAFC; color: var(--text-main); font-family: monospace;" 
+                           onclick="this.select()">
+                    <button id="share-copy-btn" onclick="copyShareUrl()" class="btn-primary" style="padding: 10px 14px; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; cursor: pointer;">
+                        <i class="fas fa-copy"></i> <span>Kopieren</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Embedded F-Droid Index JSON Template for 100% Offline & Local file:// Protocol -->
+    <script type="application/json" id="repo-index-json">
+    {
+      "repo": {
+        "timestamp": 1785844514000,
+        "version": 20002,
+        "name": "Studienprojekt",
+        "icon": "repo_icon.png",
+        "address": "https://fl0777.github.io/studienprojekt-fdroid/repo",
+        "description": "Repository fuer Studienprojekt - nur privater Gebrauch."
+      },
+      "apps": [
+        {
+          "categories": ["studienprojekt-repo"],
+          "changelog": "https://fl0777.github.io/studienprojekt-fdroid/info/CHANGELOG.md",
+          "suggestedVersionCode": "2147483647",
+          "description": "Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerung. Die App kann nur mit dem eigens entwickelten Smart Plant Pot genutzt werden.",
+          "license": "Unknown",
+          "name": "Smart Plant Pot",
+          "summary": "Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerung",
+          "webSite": "https://fl0777.github.io/studienprojekt-fdroid/",
+          "added": 1773769270000,
+          "packageName": "com.example.studienprojekt",
+          "lastUpdated": 1785844501000,
+          "localized": {
+            "en-US": {
+              "icon": "icon_c7m8oAlpDC9IdiKRQnwiQhrgzMShPCTyjua2pDzgYTY=.png",
+              "phoneScreenshots": ["1.png", "2.png", "3.png"]
+            }
+          }
+        }
+      ],
+      "packages": {
+        "com.example.studienprojekt": [
+          {
+            "added": 1785844501000,
+            "apkName": "studienprojekt_v0.1.3.apk",
+            "hash": "d3b331b28de9f58b49333f5d46d87c311d175a2961a2ef0e8d1294492491c52c",
+            "hashType": "sha256",
+            "minSdkVersion": 28,
+            "packageName": "com.example.studienprojekt",
+            "size": 57889385,
+            "targetSdkVersion": 35,
+            "uses-permission": [
+              ["android.permission.INTERNET", null],
+              ["android.permission.CAMERA", null],
+              ["android.permission.POST_NOTIFICATIONS", null],
+              ["android.permission.BLUETOOTH_SCAN", null],
+              ["android.permission.BLUETOOTH_CONNECT", null],
+              ["android.permission.BLUETOOTH_ADVERTISE", null],
+              ["android.permission.BLUETOOTH", 30],
+              ["android.permission.BLUETOOTH_ADMIN", 30],
+              ["android.permission.ACCESS_FINE_LOCATION", null],
+              ["android.permission.ACCESS_COARSE_LOCATION", null],
+              ["android.permission.ACCESS_NETWORK_STATE", null],
+              ["android.permission.WAKE_LOCK", null]
+            ],
+            "versionCode": 14,
+            "versionName": "0.1.3"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Embedded About & Legal Markdown Templates -->
+    <script type="text/markdown" id="doc-about-de">
+# Über das Projekt & Rechtliche Hinweise
+
+## Akademischer Kontext
+Das Projekt **Smart Plant Pot** entstand im Rahmen eines akademischen Studienprojektes. 
+
+## Nutzungs- & Einsatzbereich
+- **Zweck:** Die Anwendung, die bereitgestellten Projektinhalte sowie das F-Droid Repository dienen **ausschließlich privaten, akademischen und Bildungszwecken**.
+- **Nicht-kommerziell:** Eine gewerbliche Nutzung oder ein kommerzieller Vertrieb ist nicht beabsichtigt.
+
+## Entwicklung & Systemkomponenten
+- **Hardware & Gehäuse:** Eigenes CAD-designtes Topfsystem für eine perfekte Integration der Elektronikkomponenten und IoT-Sensoren.
+- **Software & App:** Android-Anwendung zur Überwachung von Bodenfeuchte, Temperatur und Luftfeuchtigkeit mit automatisierter Bewässerungssteuerung.
+
+## Design & KI-Hinweise (Vibecoding)
+- **Webseite & Layout:** Die Landing Page und Benutzeroberfläche wurden mittels AI Vibe Coding (**vibecoded**) gestaltet und entwickelt.
+- **App-Logo & Grafiken:** Auch das Logo sowie grafische App-Elemente wurden vibecoded / mit KI-Unterstützung generiert.
+
+## Urheberrecht & Lizenzen
+- **Lizenzen & Rechte:** Die im Projekt enthaltenen Inhalte, Dokumente und Quellcode-Dateien sowie verwendete Open-Source-Bibliotheken unterliegen den jeweils ausgewiesenen Lizenzen (z. B. Apache 2.0, CC-BY, CC0).
+- **Drittanbieter-Inhalte:** Verwendete Bibliotheken, Medien und Open-Source-Komponenten sind in den Drittanbieter-Hinweisen aufgeführt und entsprechend attributiert.
+- **Eigenes Bildmaterial & Schutzrechte:** Alle selbstgemachten Bilder (wie App-Screenshots, CAD-Zeichnungen/3D-Modelle sowie Darstellungen und Fotos von Elektronikkomponenten) unterliegen dem Urheberrecht und dürfen von Dritten nicht weitergenutzt, vervielfältigt oder weiterverbreitet werden.
+
+---
+*Vielen Dank für Ihr Interesse an unserem Studienprojekt!*
+    </script>
+
+    <script type="text/markdown" id="doc-about-en">
+# About the Project & Legal Notices
+
+## Academic Context
+The **Smart Plant Pot** project was developed as part of an academic student project.
+
+## Scope of Use
+- **Purpose:** The application, project materials, and F-Droid repository are strictly intended for **private, academic, and educational use**.
+- **Non-commercial:** Commercial distribution or use is not intended.
+
+## Development & Components
+- **Housing & Hardware:** Custom CAD-designed pot system engineered for seamless electronics integration and IoT sensor placement.
+- **Software & App:** Android application for monitoring soil moisture, temperature, and humidity with automated watering control.
+
+## Design & AI Transparency (Vibecoding)
+- **Website & Layout:** The landing page and web interface were created using AI Vibe Coding (**vibecoded**).
+- **App Logo & Graphics:** The app logo and graphic assets are also vibecoded / AI-assisted.
+
+## Copyright & Licenses
+- **Licenses:** All project files, documentation, source code, and included open-source libraries are governed by their respective licenses (e.g., Apache 2.0, CC-BY, CC0).
+- **Third-Party Notices:** External libraries, media, and open-source assets are properly attributed in the Third-Party Notices section.
+- **Proprietary Media & Image Rights:** All self-created images (such as app screenshots, CAD drawings/3D models, and electronic component photos/visualizations) are protected by copyright and may not be reused or redistributed by third parties.
+    </script>
+
+    <!-- Embedded Complete Markdown Templates for Offline file:// & Fallback -->
+    <script type="text/markdown" id="doc-changelog-de">
+# Changelog
+
+## [0.1.4] - [unreleased]
+
+### Hinzugefügt
+
+### Geändert
+
+### Behandelte Fehler (Bugfixes)
+
+## [0.1.3] - 2026-08-04
+
+### Geändert
+- **Konfigurationsassistent:** Der Prozess zur Ersteinrichtung wurde aktualisiert und optimiert.
+- **UI Improvements:** Umfassende Design-Anpassungen im Pflanzenkatalog und in der Sidebar für eine bessere Benutzererfahrung.
+
+### Behandelte Fehler (Bugfixes)
+- **Synchronisation:** Fehler behoben, bei dem die automatische Datensynchronisation nach der Anmeldung nicht zuverlässig startete.
+
+## [0.1.2] - 2026-08-02
+
+### Hinzugefügt
+- **Navigation:** Neue Wischgesten (Swipe) zum intuitiven Wechseln zwischen Aktivitäten in der Hauptübersicht.
+
+### Geändert
+- **Pflanzenkatalog:** Deutlich verbessertes Caching für Bilder und Daten, was zu einer flüssigeren Performance führt.
+- **UI & Diagramme:** Umfassende Optimierungen an der Sensordaten-Visualisierung (Einzeldiagramme und Skalierung).
+- **Geräteverwaltung:** UI-Verbesserungen bei der Auswahl und Deselektion von Geräten sowie konsistente Umbenennung zu „Blumentopf auswählen“.
+- **Build-System:** Update auf die neueste Gradle-Version und Behebung diverser Build-Warnungen für bessere Stabilität.
+
+### Behandelte Fehler (Bugfixes)
+- **Benachrichtigungen:** Fix für leere Benachrichtigungsansichten ("NoMessageFromDevice") und weitere Stabilitäts-Fixes im Notification-Service.
+
+## [0.1.1] - 2026-06-20
+
+### Hinzugefügt
+- **Silent Push Notifications:** Unterstützung für individuelle Hintergrund-Benachrichtigungen mit einstellbaren Warnpegeln.
+- **Geräte-Sichtbarkeit:** Neue Funktion zum globalen Ein- und Ausblenden von Geräten über die Account- und Geräteübersicht.
+- **QR-Code Generator:** Erstellung von benutzerdefinierten QR-Codes für das Projekt (Debug-Option).
+
+### Geändert
+- **UI Improvements:** Umfassende Optimierungen an der Benutzeroberfläche, Icons und Sensordiagrammen.
+- **Rechtliches:** Aktualisierung der Lizenzen und der Datenschutzerklärung auf Stand Version 0.1.1.
+
+### Behandelte Fehler (Bugfixes)
+- **Geräteübersicht & Datenbank:** Fehler beim Laden der Datenbank bei mehr als 1000 Einträgen behoben.
+
+## [0.1.0] - 2026-05-31
+
+### Hinzugefügt
+- **Microcontroller Einstellungen:** Einstellungen für Aktualisierungsrate in der µC-Konfiguration und Zuordnung von Pflanzenprofilen.
+- **Animierte Status Icons:** Neue animierte Statusicons in der Startseite mit Quicklinks zu Sensordaten.
+- **Englische Sprachunterstützung:** Vollständige englische Übersetzung der App hinzugefügt.
+- **Pflanzenkatalog:** Neuer Pflanzenkatalog mit Wikimedia Commons Bildansicht hinzugefügt.
+- **Microcontroller Provisioning:** Neue Hardware-Einrichtungsfunktion für Microcontroller-Geräte.
+
+### Geändert
+- **Realtime-Verwaltung:** Kontinuierliches Realtime Management und Datenbank Caching implementiert.
+- **App-Icons:** Neue, modernisierte App-Icons.
+
+## [0.0.8] - 2026-05-18
+
+### Hinzugefügt
+- **Verbesserter Konfigurationsassistent:** Komplett überarbeiteter Prozess für die Geräte-Inbetriebnahme (Provisioning).
+- **UI-Modernisierung:** Neues Design für den Navigation-Header und optimierte Einstellungs-Elemente.
+- **Hauptansicht:** Implementierung einer Layout-Umschaltung (Liste/Grid) in der Geräteübersicht.
+
+## [0.0.7] - 2026-05-02
+
+### Hinzugefügt
+- **Performance-Optimierung:** Cache-Funktion für relevante Daten zur Gewährleistung einer flüssigeren App-Performance.
+- **Echtzeit-Funktionen:** Erweiterung der Realtime-Funktionalitäten für aktuellere Daten ohne manuelles Aktualisieren.
+- **Geräteansicht:** Überarbeitete Geräteübersicht mit erweiterbaren Editieroptionen.
+
+## [0.0.6] - 2026-04-26
+
+### Hinzugefügt
+- **Umzug auf neue Supabase-Datenbankstruktur:** Echte RLS (Row-Level Security) & Authentifizierung.
+- **Geräte-Management:** Automatisierte Registrierung von Geräten in der `t_devices` Tabelle bei Supabase.
+- **Benutzerkonto:** Passwortänderung, Account-Löschung & Geräte-Löschung in der App.
+
+## [0.0.5] - 2026-04-11
+
+### Hinzugefügt
+- **Benachrichtigungsverlauf:** Neue Ansicht (`NotificationViewerActivity`) zum Einsehen empfangener Push-Benachrichtigungen.
+- **Authentifizierung:** Magic-Link Login und Passwort-Reset via E-Mail.
+
+## [0.0.4] - 2026-04-09
+
+### Hinzugefügt
+- **Push-Benachrichtigungen:** Firebase Cloud Messaging (FCM) Integration für Echtzeit-Benachrichtigungen.
+
+## [0.0.3] - 2026-04-03
+
+### Hinzugefügt
+- **Debug-Tools:** Neue Ansichten für Supabase-Debug-Optionen & QR-Code Tools.
+
+## [0.0.2] - 2026-02-19
+
+### Hinzugefügt
+- **Supabase-Bildverwaltung:** Neue `BildtestActivity` zur Anzeige von Bildern aus dem Supabase Storage.
+
+## [0.0.1] - 2026-02-17
+
+### Hinzugefügt
+- **Datenvisualisierung:** Integration von `MPAndroidChart` zur Anzeige von Sensordaten.
+- **Supabase-Integration:** Zentraler `SupabaseManager` zur Verwaltung von Authentifizierung und Datenbankzugriff.
+    </script>
+
+    <script type="text/markdown" id="doc-changelog-en">
+# Changelog
+
+## [0.1.4] - [unreleased]
+
+### Added
+
+### Changed
+
+### Bug Fixes
+
+## [0.1.3] - 2026-08-04
+
+### Changed
+- **Configuration Assistant:** Updated and optimized the initial setup process.
+- **UI Improvements:** Comprehensive design adjustments in the plant catalog and sidebar for a better user experience.
+
+### Bug Fixes
+- **Synchronization:** Fixed an issue where automatic data synchronization did not start reliably after login.
+
+## [0.1.2] - 2026-08-02
+
+### Added
+- **Navigation:** New swipe gestures for intuitive switching between activities in the main overview.
+
+### Changed
+- **Plant Catalog:** Significantly improved caching for images and data, resulting in smoother performance.
+- **UI & Diagrams:** Comprehensive optimizations to sensor data visualization.
+
+## [0.1.1] - 2026-06-20
+
+### Added
+- **Silent Push Notifications:** Support for individual background notifications with adjustable warning levels.
+- **Device Visibility:** New feature to globally show and hide devices.
+
+## [0.1.0] - 2026-05-31
+
+### Added
+- **Microcontroller Settings:** Added settings for update rate in µC configuration.
+- **Plant Catalog:** New plant catalog with Wikimedia Commons image viewer.
+
+## [0.0.8] - 2026-05-18
+
+### Added
+- **Improved Configuration Assistant:** Completely revised process for device commissioning (provisioning).
+
+## [0.0.7] - 2026-05-02
+
+### Added
+- **Performance Optimization:** Implementation of a cache function for relevant data.
+
+## [0.0.6] - 2026-04-26
+
+### Added
+- **Supabase Database:** Real RLS (Row-Level Security), authentication, and device management.
+
+## [0.0.5] - 2026-04-11
+
+### Added
+- **Notification History:** New view (`NotificationViewerActivity`) to view received notifications.
+
+## [0.0.4] - 2026-04-09
+
+### Added
+- **Push Notifications:** Firebase Cloud Messaging (FCM) integration.
+
+## [0.0.3] - 2026-04-03
+
+### Added
+- **Debug Tools:** New view for Supabase debug options & QR Code tools.
+
+## [0.0.2] - 2026-02-19
+
+### Added
+- **Supabase Storage:** Image viewer for Supabase Storage camera bucket.
+
+## [0.0.1] - 2026-02-17
+
+### Added
+- **Initial Release:** Sensor data visualization with MPAndroidChart & Supabase integration.
+    </script>
+
+    <script type="text/markdown" id="doc-readme-de">
+# Studienprojekt - Plant Monitoring App
+
+Eine innovative Android-Anwendung zur Überwachung und Verwaltung von Pflanzen mittels IoT-Sensoren und Microcontroller-Integration.
+
+## Überblick
+
+Die Studienprojekt-App ermöglicht es Benutzern, ihre Pflanzen in Echtzeit zu überwachen, indem sie mit Microcontroller-basierten Sensoren kommuniziert. Die App bietet eine benutzerfreundliche Oberfläche zur Verwaltung von Geräten, Sensoren, Benachrichtigungen und einem umfassenden Pflanzenkatalog.
+
+### Hauptfunktionen
+
+#### Grundfunktionen
+- **Geräteverwaltung:** Verwalten Sie mehrere IoT-Geräte mit einfacher Registrierung und benutzerdefinierten Namen
+- **Sensordaten:** Echtzeitüberwachung von Sensordaten (Temperatur, Luftfeuchtigkeit, Bodenfeuchtigkeit, etc.)
+- **Datenverlauf:** Graphische Darstellung von Sensordaten mit Filteroptionen
+- **Responsive UI:** Moderne Benutzerschnittstelle mit List- und Grid-Layout-Umschaltung
+
+#### Benachrichtigungen
+- **Push-Benachrichtigungen:** Firebase Cloud Messaging (FCM) Integration
+- **Benachrichtigungsverlauf:** Überblick über alle empfangenen Benachrichtigungen
+- **Konfigurierbare Einstellungen:** Anpassbare Benachrichtigungsoptionen pro Gerät
+
+#### Pflanzenkatalog
+- **Integrierter Katalog:** Umfangreiche Datenbank häufiger Zimmerpflanzen
+- **Wikimedia Commons Integration:** Hochwertige Pflanzenbilder von Wikimedia Commons
+- **Offline-Verfügbarkeit:** Caching von Katalogdaten für Offline-Nutzung
+- **Detaillierte Informationen:** Pflanzenpflege-Tipps und spezifische Anforderungen
+
+#### ⚙️ Einstellungen & Konfiguration
+- **Microcontroller Setup:** Geführter Konfigurationsassistent für IoT-Geräte
+- **WLAN-Einrichtung:** Einfache WLAN-Konfiguration via QR-Code
+- **Aktualisierungsrate:** Anpassbare Sensor-Polling-Intervalle
+- **Mehrsprachigkeit:** Verfügbar in Deutsch und Englisch
+
+#### Zusatzfunktionen
+- **Bildverwaltung:** Speicherung und Verwaltung von Gerätebildern aus dem Cloud Storage
+- **QR-Code-Generierung:** Einfache Geräte-Setup-Codes für schnelle Einrichtung
+- **Deep-Link-Support:** Magic-Link-Login und Passwort-Reset-Funktionen
+
+## Authentifizierung & Datensicherheit
+
+- **Supabase Auth:** Sichere Authentifizierung mit E-Mail und Magic Links
+- **Row-Level Security (RLS):** Datenbankschutz auf Zeilenebene
+- **Verschlüsselte Kommunikation:** HTTPS/TLS für alle API-Anfragen
+- **Firebase Cloud Messaging:** Sicherer Push-Benachrichtigungsdienst
+
+## Projektstruktur
+
+```
+Studienprojekt/
+├── app/                          # Hauptanwendung (Android)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── AndroidManifest.xml
+│   │   │   ├── java/com/example/studienprojekt/
+│   │   │   │   ├── Activities/       # Android Activities
+│   │   │   │   ├── Entities/         # Datenmodelle
+│   │   │   │   ├── Repositories/     # Datenquellen
+│   │   │   │   ├── Services/         # App-Services
+│   │   │   │   └── Utils/            # Hilfsfunktionen
+├── provisioning/                 # Provisioning-Modul
+├── CHANGELOG.md                  # Versionsverlauf
+└── README.md                     # Diese Datei
+```
+
+## Technologie-Stack
+
+### Sprachen & Frameworks
+- **Kotlin:** Hauptprogrammiersprache für die Android-App
+- **Android Framework:** API Level 28-35
+- **Jetpack Compose & XML Layouts:** UI-Design
+
+### Datenbank & Backend
+- **Supabase:** Backend-as-a-Service mit PostgreSQL
+- **Postgrest:** Real-time REST API
+- **Room Database:** Lokale Android-Datenspeicherung
+
+### Bibliotheken
+- **Firebase Cloud Messaging (FCM):** Push-Benachrichtigungen
+- **Ktor Client:** HTTP-Client für API-Kommunikation
+- **Coil:** Bildladen und Caching
+- **MPAndroidChart:** Datenvisualisierung
+- **ML Kit Barcode Scanning:** QR-Code-Erkennung
+- **Androidx CameraX:** Kameraintegration
+
+## Systemanforderungen
+
+- **Minimum Android Version:** Android 9.0 (API Level 28)
+- **Target Android Version:** Android 15 (API Level 35)
+- **RAM:** Mindestens 2 GB empfohlen
+- **Speicherplatz:** Ca. 50 MB für Installation + Datenbank
+
+## Installation & Aufbau
+
+### Schritte
+1. Repository klonen: `git clone <repository-url>`
+2. Abhängigkeiten installieren: `./gradlew build`
+3. APK erstellen: `./gradlew assembleRelease`
+4. Auf Android-Gerät installieren: `adb install app/build/outputs/apk/release/app-release.apk`
+    </script>
+
+    <script type="text/markdown" id="doc-readme-en">
+# Studienprojekt - Plant Monitoring App
+
+An innovative Android application for monitoring and managing plants using IoT sensors and microcontroller integration.
+
+## Overview
+
+The Studienprojekt app enables users to monitor their plants in real time by communicating with microcontroller-based sensors. The app provides a user-friendly interface for managing devices, sensors, notifications, and a comprehensive plant catalog.
+
+### Core Features
+
+#### Basic Functions
+- **Device Management:** Manage multiple IoT devices with simple registration and custom names
+- **Sensor Data:** Real-time monitoring of sensor data (temperature, humidity, soil moisture, etc.)
+- **Data History:** Graphical representation of sensor data with filtering options
+- **Responsive UI:** Modern user interface with list and grid layout switching
+
+#### Notifications
+- **Push Notifications:** Firebase Cloud Messaging (FCM) integration
+- **Notification History:** Overview of all received notifications
+- **Configurable Settings:** Custom notification options per device
+
+#### Plant Catalog
+- **Integrated Catalog:** Extensive database of common houseplants
+- **Wikimedia Commons Integration:** High-quality plant images from Wikimedia Commons
+- **Offline Availability:** Caching of catalog data for offline use
+- **Detailed Information:** Plant care tips and specific requirements
+
+#### ⚙️ Settings & Configuration
+- **Microcontroller Setup:** Guided configuration wizard for IoT devices
+- **Wi-Fi Setup:** Simple Wi-Fi configuration via QR code
+- **Update Rate:** Adjustable sensor polling intervals
+- **Multilingual Support:** Available in German and English
+
+## Authentication & Data Security
+
+- **Supabase Auth:** Secure authentication with email and magic links
+- **Row-Level Security (RLS):** Database protection at the row level
+- **Encrypted Communication:** HTTPS/TLS for all API requests
+- **Firebase Cloud Messaging:** Secure push notification service
+
+## Technology Stack
+
+- **Kotlin:** Primary programming language for Android
+- **Android Framework:** API Level 28-35
+- **Supabase:** PostgreSQL Backend-as-a-Service
+- **Room Database:** Local data storage
+- **Firebase FCM:** Real-time notifications
+    </script>
+
+    <script type="text/markdown" id="doc-licenses-de">
+# Drittanbieter-Hinweise & Open Source Lizenzen
+
+Diese App verwendet Open-Source-Bibliotheken aus dem Android-, Kotlin- und Backend-Ökosystem.
+
+| Bibliothek | Lizenz | Copyright |
+| --- | --- | --- |
+| AndroidX Libraries | Apache License 2.0 | Google LLC |
+| Android CameraX | Apache License 2.0 | Google LLC |
+| Firebase Cloud Messaging | Apache License 2.0 | Google LLC |
+| Kotlin & Ktor Client | Apache License 2.0 | JetBrains s.r.o. |
+| Supabase Kotlin SDK | Apache License 2.0 | Supabase |
+| MPAndroidChart | Apache License 2.0 | Philipp Jahoda |
+| Wikimedia Commons Images | CC-BY / CC0 | Wikimedia Contributors |
+
+## Design & KI-Generierung (Vibecoding)
+- **Webseite & Interface:** AI Vibe Coding (vibecoded)
+- **App-Logo & Grafiken:** AI-gestützt / vibecoded
+
+## Eigenes Bildmaterial & Schutzrechte
+- **Verbot der Weiterverwendung:** Alle selbstgemachten Bilder (darunter App-Screenshots, CAD-Zeichnungen/3D-Modelle des Topfdesigns sowie Fotografien und Darstellungen der Elektronikkomponenten/Hardware) unterliegen dem Urheberrecht und dürfen von Dritten nicht weitergenutzt, vervielfältigt oder weiterverbreitet werden.
+    </script>
+
+    <script type="text/markdown" id="doc-licenses-en">
+# Third-Party Notices & Open Source Licenses
+
+This app uses open-source libraries from the Android, Kotlin, and backend ecosystem.
+
+| Library | License | Copyright |
+| --- | --- | --- |
+| AndroidX Libraries | Apache License 2.0 | Google LLC |
+| Firebase Cloud Messaging | Apache License 2.0 | Google LLC |
+| Kotlin & Ktor Client | Apache License 2.0 | JetBrains s.r.o. |
+| Supabase Kotlin SDK | Apache License 2.0 | Supabase |
+| MPAndroidChart | Apache License 2.0 | Philipp Jahoda |
+
+## Design & AI Generation (Vibecoding)
+- **Website & Interface:** AI Vibe Coding (vibecoded)
+- **App Logo & Graphics:** AI-assisted / vibecoded
+
+## Proprietary Image & Media Rights
+- **Prohibition of Reuse:** All self-created images (including app screenshots, CAD technical drawings/3D models, and electronic component photos/visualizations) are protected by copyright and may not be reused, reproduced, or redistributed by third parties.
+    </script>
+
+    <!-- Screenshot Lightbox Modal with Carousel Navigation -->
+    <div id="lightbox-modal" class="modal-overlay">
+        <button id="lightbox-close" class="modal-close" title="Schließen" aria-label="Schließen"><i class="fas fa-xmark"></i></button>
+        
+        <button id="lightbox-prev" class="lightbox-nav-btn prev-btn" aria-label="Vorheriges Bild" title="Vorheriges Bild">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="lightbox-content-box">
+            <img id="lightbox-img" class="modal-img" src="" alt="Enlarged Screenshot">
+            <div id="lightbox-counter" class="lightbox-counter">1 / 3</div>
+        </div>
+
+        <button id="lightbox-next" class="lightbox-nav-btn next-btn" aria-label="Nächstes Bild" title="Nächstes Bild">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Smart Plant Pot • F-Droid Build Repository & Online Showcase</p>
+            <p style="margin-top: 6px; font-size: 0.85rem; color: var(--text-muted);">
+                <a href="javascript:void(0)" onclick="openDocsModal('about')" style="color: var(--text-muted); text-decoration: underline;">
+                    <i class="fas fa-graduation-cap" style="color: var(--primary-color);"></i> Akademisches Studienprojekt • Nur für den privaten Gebrauch (Details)
+                </a>
+            </p>
+
+            <p style="margin-top: 6px; font-size: 0.8rem; color: var(--text-muted);">
+                <i class="fas fa-wand-magic-sparkles" style="color: var(--primary-color);"></i> Webseite &amp; Logo vibecoded
+            </p>
+
+            <p style="margin-top: 8px; font-size: 0.8rem;">
+                Links: 
+                <a href="javascript:void(0)" onclick="openDocsModal('about')">Über das Projekt</a> | 
+                <a href="https://github.com/FL0777/studienprojekt-fdroid" target="_blank"><i class="fab fa-github"></i> GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="./web/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1330 @@
+/* ==========================================================================
+   F-DROID REPOSITORY & APP SHOWCASE - STYLESHEET (LIGHT THEME)
+   ========================================================================== */
+
+:root {
+    --primary-color: #317FBB;
+    --primary-sky: #79C7EC;
+    --primary-gradient: linear-gradient(135deg, #317FBB 0%, #79C7EC 100%);
+    --accent-color: #00B0FF;
+    --bg-main: #F4F7FA;
+    --card-bg: #FFFFFF;
+    --card-border: #E2E8F0;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* Reset & General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 75px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: #1D5887;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Navigation Header (Fixed Top Bar) */
+.navbar {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--card-border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 14px 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    white-space: nowrap;
+}
+
+.brand-icon-img {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.brand-share-btn {
+    background: rgba(32, 131, 235, 0.08);
+    color: var(--primary-color);
+    border: 1px solid rgba(32, 131, 235, 0.2);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.88rem;
+    transition: var(--transition);
+    margin-left: 2px;
+}
+
+.brand-share-btn:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(32, 131, 235, 0.25);
+}
+
+.nav-links {
+    display: flex;
+    gap: 16px;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-color);
+    background: rgba(121, 199, 236, 0.15);
+}
+
+.badge-fdroid {
+    background: rgba(49, 127, 187, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(49, 127, 187, 0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+/* Hero Section */
+.hero {
+    padding: 45px 0 25px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 760px;
+    margin: 0 auto 20px;
+    line-height: 1.6;
+}
+
+/* Discreet Project Notice Pill */
+.project-notice-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #F1F5F9;
+    border: 1px solid var(--card-border);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.project-notice-pill:hover {
+    background: #FFFFFF;
+    border-color: var(--primary-sky);
+    color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.pill-more-link {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-left: 4px;
+}
+
+/* Quick Anchor Navigation Buttons */
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    color: var(--text-muted);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.tab-btn:hover {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(121, 199, 236, 0.4);
+}
+
+/* Content Sections (Continuous Flow) */
+.content-section {
+    display: block;
+    margin-bottom: 50px;
+    scroll-margin-top: 80px;
+}
+
+/* App Detail Card (F-Droid Style) */
+.app-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+/* Feature Graphic Banner */
+.feature-banner {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #E2E8F0, #CBD5E1);
+    display: block;
+}
+
+/* App Header */
+.app-header {
+    padding: 30px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.app-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 22px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+    object-fit: cover;
+    border: 3px solid #FFFFFF;
+    flex-shrink: 0;
+}
+
+.app-meta {
+    flex-grow: 1;
+}
+
+.app-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.app-package {
+    font-family: monospace;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    background: #F1F5F9;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 12px;
+    border: 1px solid #E2E8F0;
+    word-break: break-all;
+}
+
+.app-summary {
+    color: #475569;
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+
+.app-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(121, 199, 236, 0.15);
+    border: 1px solid rgba(121, 199, 236, 0.3);
+    color: #2563EB;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Actions Bar */
+.action-bar {
+    padding: 0 30px 30px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.btn-download {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(121, 199, 236, 0.4);
+    transition: var(--transition);
+    text-align: center;
+    justify-content: center;
+}
+
+.btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(121, 199, 236, 0.6);
+    color: white;
+}
+
+.btn-secondary {
+    background: #F1F5F9;
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    cursor: pointer;
+    justify-content: center;
+}
+
+.btn-secondary:hover {
+    background: #E2E8F0;
+    color: var(--text-main);
+}
+
+/* Screenshots Gallery Carousel (Frameless with Zero Top Clipping) */
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 30px 30px 15px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.screenshots-container {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 12px 30px 24px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.screenshots-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.screenshots-container::-webkit-scrollbar-track {
+    background: #F1F5F9;
+    border-radius: 4px;
+}
+
+.screenshots-container::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 4px;
+}
+
+.screenshot-thumb {
+    height: 320px;
+    width: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    box-shadow: none;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    flex-shrink: 0;
+}
+
+.screenshot-thumb:hover {
+    transform: translateY(-6px);
+    opacity: 0.95;
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Features Highlight Grid (Foreground App Features) */
+.features-highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    padding: 0 30px 30px;
+}
+
+.feature-card {
+    background: #F8FAFC;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+}
+
+.feature-card-icon {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.feature-card h4 {
+    font-size: 0.98rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.feature-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Specs Grid */
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 0 30px 30px;
+}
+
+.spec-item {
+    background: #F8FAFC;
+    border: 1px solid var(--card-border);
+    padding: 16px;
+    border-radius: var(--radius-md);
+}
+
+.spec-label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.spec-value {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+/* App Description Section */
+.app-description {
+    padding: 0 30px 30px;
+    color: #334155;
+    font-size: 0.95rem;
+    white-space: pre-line;
+}
+
+/* Permissions Accordion */
+.permissions-box {
+    margin: 0 30px 30px;
+    background: #F8FAFC;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.permissions-header {
+    padding: 16px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    color: var(--text-main);
+}
+
+.permissions-list {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.perm-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #475569;
+}
+
+.perm-icon {
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+/* F-Droid Repo Card & Installation Box */
+.repo-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    padding: 0;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+.fdroid-setup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.setup-box {
+    background: #F8FAFC;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.setup-box h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.qr-box {
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 14px;
+    display: inline-block;
+    margin: 15px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    border: 1px solid #E2E8F0;
+}
+
+.qr-code-img {
+    width: 160px;
+    height: 160px;
+    display: block;
+}
+
+.copy-box {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 0.85rem;
+    word-break: break-all;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.copy-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.btn-copy {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+}
+
+.btn-open {
+    background: #64748B;
+    color: white;
+}
+
+.btn-secondary.btn-copy {
+    background: #F1F5F9;
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+}
+
+.btn-secondary.btn-copy:hover {
+    background: #E2E8F0;
+    color: var(--text-main);
+}
+
+.btn-copy:hover {
+    opacity: 0.9;
+}
+
+/* Seamless Poster & Section Header Bars */
+.section-header-bar {
+    background: #F8FAFC;
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-header-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+}
+
+.section-header-subtitle {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+.poster-card {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+.poster-toolbar {
+    background: #F8FAFC;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.poster-title {
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.poster-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.poster-canvas-container {
+    width: 100%;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.poster-canvas {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    display: block;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    cursor: pointer;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+}
+
+.poster-pdf-fallback {
+    width: 100%;
+    height: 1350px;
+    border: none;
+    display: block;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    border-radius: 8px;
+}
+
+/* Documentation Cards Grid */
+.docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0 30px 30px;
+}
+
+.doc-card {
+    background: #F8FAFC;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    transition: var(--transition);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.doc-card:hover {
+    border-color: var(--primary-sky);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.doc-card-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.doc-card-desc {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+/* Interactive Markdown Viewer Modal */
+.docs-modal-container {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 900px;
+    max-height: 88vh;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+}
+
+.docs-modal-header {
+    padding: 18px 24px;
+    background: #F8FAFC;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.docs-modal-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-switch {
+    display: flex;
+    gap: 6px;
+    background: #E2E8F0;
+    padding: 3px;
+    border-radius: 20px;
+}
+
+.lang-btn {
+    border: none;
+    background: transparent;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.lang-btn.active {
+    background: #FFFFFF;
+    color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.docs-modal-body {
+    padding: 30px;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    color: #334155;
+    line-height: 1.7;
+}
+
+/* Markdown Styling inside Modal (Light Theme White Code Blocks) */
+.docs-modal-body h1 { font-size: 1.6rem; margin-bottom: 15px; border-bottom: 2px solid var(--primary-sky); padding-bottom: 8px; color: var(--text-main); }
+.docs-modal-body h2 { font-size: 1.3rem; margin: 25px 0 12px; border-bottom: 1px solid var(--card-border); padding-bottom: 6px; color: var(--text-main); }
+.docs-modal-body h3 { font-size: 1.1rem; margin: 18px 0 8px; color: var(--text-main); }
+.docs-modal-body p { margin-bottom: 14px; }
+.docs-modal-body ul, .docs-modal-body ol { margin: 10px 0 16px 24px; }
+.docs-modal-body li { margin-bottom: 6px; }
+.docs-modal-body code { background: #F1F5F9; border: 1px solid #E2E8F0; padding: 2px 6px; border-radius: 4px; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.88em; color: var(--text-main); }
+.docs-modal-body pre { background: #FFFFFF; color: var(--text-main); border: 1px solid var(--card-border); padding: 16px; border-radius: var(--radius-md); overflow-x: auto; margin: 16px 0; font-family: 'Consolas', 'Monaco', 'Courier New', monospace; font-size: 0.88rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02); }
+.docs-modal-body pre code { background: transparent; border: none; color: var(--text-main); padding: 0; }
+.docs-modal-body table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+.docs-modal-body th, .docs-modal-body td { border: 1px solid var(--card-border); padding: 10px 14px; text-align: left; }
+.docs-modal-body th { background: #F8FAFC; font-weight: 700; }
+.docs-modal-body blockquote { border-left: 4px solid var(--primary-color); padding-left: 14px; color: var(--text-muted); font-style: italic; margin: 16px 0; }
+
+/* Collapsible Version Accordions for Changelog */
+.changelog-accordion {
+    background: #F8FAFC;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.changelog-accordion[open] {
+    background: #FFFFFF;
+    border-color: var(--primary-sky);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.changelog-summary {
+    padding: 14px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    user-select: none;
+}
+
+.changelog-summary::-webkit-details-marker {
+    display: none;
+}
+
+.summary-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.changelog-ver-tag {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.changelog-ver-tag.unreleased {
+    background: #CBD5E1;
+    color: #475569;
+}
+
+.changelog-date {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.accordion-arrow {
+    color: var(--text-muted);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.changelog-accordion[open] .accordion-arrow {
+    transform: rotate(180deg);
+    color: var(--primary-color);
+}
+
+.changelog-content {
+    padding: 12px 18px 18px;
+    border-top: 1px solid var(--card-border);
+    margin-top: 4px;
+    font-size: 0.92rem;
+}
+
+.changelog-content h3 {
+    font-size: 0.95rem;
+    margin: 12px 0 6px;
+    color: var(--primary-color);
+}
+
+/* Lightbox Modal & Carousel Navigation */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+    max-height: 92vh;
+    position: relative;
+}
+
+.modal-img {
+    max-width: 85vw;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    background: #FFFFFF;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.lightbox-counter {
+    color: #FFFFFF;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 14px;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 4px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+}
+
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    border: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 1010;
+}
+
+.lightbox-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-nav-btn.prev-btn {
+    left: 25px;
+}
+
+.lightbox-nav-btn.next-btn {
+    right: 25px;
+}
+
+.modal-close {
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    user-select: none;
+    line-height: 1;
+}
+
+/* Docs Modal Header Close Button */
+.docs-modal-header .modal-close {
+    color: var(--text-main);
+    background: #E2E8F0;
+    border: 1px solid #CBD5E1;
+}
+
+.docs-modal-header .modal-close:hover {
+    background: #CBD5E1;
+    color: #000000;
+    transform: scale(1.08);
+}
+
+/* Fullscreen Lightbox Modal Close Button */
+#lightbox-modal .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #FFFFFF;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 1.3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1020;
+}
+
+#lightbox-modal .modal-close:hover {
+    background: #0F172A;
+    border-color: #FFFFFF;
+    transform: scale(1.1);
+}
+
+/* Toast Notifications */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #0F172A;
+    color: #FFFFFF;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background: #FFFFFF;
+    border-top: 1px solid var(--card-border);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Responsive Mobile Optimizations (0 Horizontal Scroll Overflow) */
+@media (max-width: 768px) {
+    body {
+        padding-top: 105px;
+    }
+
+    .container {
+        padding: 0 14px;
+    }
+
+    .nav-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .brand {
+        font-size: 1.05rem;
+        gap: 8px;
+    }
+
+    .brand-icon-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .nav-links {
+        display: flex;
+        overflow-x: auto;
+        max-width: 100%;
+        width: 100%;
+        justify-content: flex-start;
+        padding: 4px 10px 8px;
+        gap: 6px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-link {
+        white-space: nowrap;
+        font-size: 0.85rem;
+        padding: 6px 12px;
+        background: #F1F5F9;
+        border-radius: 20px;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+
+    .tab-nav {
+        gap: 8px;
+    }
+
+    .tab-btn {
+        font-size: 0.85rem;
+        padding: 10px 18px;
+    }
+
+    .app-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .app-tags {
+        justify-content: center;
+    }
+    
+    .action-bar {
+        justify-content: center;
+        padding: 0 20px 20px;
+    }
+
+    .btn-download {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .app-description {
+        padding: 0 20px 20px;
+        font-size: 0.9rem;
+    }
+
+    .features-highlight-grid,
+    .specs-grid,
+    .docs-grid {
+        padding: 0 20px 20px;
+    }
+
+    .section-title {
+        margin: 20px 20px 12px;
+        font-size: 1.15rem;
+    }
+
+    .screenshots-container {
+        padding: 12px 20px 20px;
+    }
+
+    .screenshot-thumb {
+        height: 260px;
+    }
+
+    .permissions-box {
+        margin: 0 20px 20px;
+    }
+
+    .repo-card {
+        padding: 20px;
+    }
+    
+    .poster-canvas-container {
+        padding: 10px;
+    }
+
+    .poster-toolbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .poster-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .project-notice-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .lightbox-nav-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+
+    .lightbox-nav-btn.prev-btn {
+        left: 10px;
+    }
+
+    .lightbox-nav-btn.next-btn {
+        right: 10px;
+    }
+
+    .modal-close {
+        top: 15px;
+        right: 15px;
+        width: 38px;
+        height: 38px;
+        font-size: 1.8rem;
+    }
+
+    .docs-modal-container {
+        max-height: 94vh;
+        border-radius: var(--radius-md);
+    }
+
+    .docs-modal-header {
+        padding: 14px 16px;
+    }
+
+    .docs-modal-body {
+        padding: 18px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .copy-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .copy-actions {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+        gap: 8px;
+    }
+
+    .btn-copy {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+}

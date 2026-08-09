@@ -1,0 +1,22 @@
+{
+  "sections": [
+    {
+      "id": "poster",
+      "title": "Projekt Poster",
+      "icon": "fa-file-pdf",
+      "file": "assets/sections/poster.html"
+    },
+    {
+      "id": "showcase",
+      "title": "App Showcase",
+      "icon": "fa-mobile-alt",
+      "file": "assets/sections/showcase.html"
+    },
+    {
+      "id": "installation",
+      "title": "App-Installation",
+      "icon": "fa-download",
+      "file": "assets/sections/installation.html"
+    }
+  ]
+}

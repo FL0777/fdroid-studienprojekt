@@ -1,0 +1,150 @@
+<!-- SECTION 2: APP SHOWCASE -->
+<section id="app-showcase" class="content-section">
+    <article class="app-card">
+        <div class="section-header-bar">
+            <h2 class="section-header-title">
+                <i class="fas fa-mobile-alt" style="color: var(--primary-color);"></i>
+                <span>App Showcase</span>
+            </h2>
+            <span class="section-header-subtitle">Detaillierter App-Überblick &amp; Dokumentation</span>
+        </div>
+
+        <!-- Feature Banner -->
+        <img class="feature-banner" src="./metadata/com.example.studienprojekt/en-US/images/featureGraphic.png" alt="Smart Plant Pot Banner" onerror="this.style.display='none'">
+        
+        <!-- App Header -->
+        <div class="app-header">
+            <img id="dyn-app-icon" class="app-icon" src="./repo/com.example.studienprojekt/en-US/icon.png" alt="App Icon">
+            <div class="app-meta">
+                <h2 id="dyn-app-name" class="app-name">Smart Plant Pot</h2>
+                <span id="dyn-app-package" class="app-package">com.example.studienprojekt</span>
+                <p id="dyn-app-summary" class="app-summary">Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerung</p>
+                <div class="app-tags">
+                    <span class="tag"><i class="fas fa-tag"></i> studienprojekt-repo</span>
+                    <span class="tag"><i class="fas fa-scale-balanced"></i> Open Source</span>
+                    <span class="tag"><i class="fab fa-android"></i> Android 9.0+</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <a href="#installation" class="btn-download">
+                <i class="fas fa-download"></i> Zur App-Installation & Repo
+            </a>
+        </div>
+
+        <!-- App Description -->
+        <h3 class="section-title"><i class="fas fa-align-left"></i> Beschreibung</h3>
+        <div id="dyn-app-description" class="app-description">
+Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerung. Das Projekt beinhaltet die Entwicklung eines intelligenten Pflanzentopfes mit integrierten Sensoren und Bluetooth-Anbindung an die Android-App.
+        </div>
+
+        <!-- Hauptfunktionen & Highlights Grid -->
+        <h3 class="section-title"><i class="fas fa-star"></i> Hauptfunktionen & Highlights</h3>
+        <div class="features-highlight-grid">
+            <div class="feature-card">
+                <i class="fas fa-microchip feature-card-icon"></i>
+                <h4>Geräteverwaltung & IoT</h4>
+                <p>Verwaltung mehrerer Pflanzentöpfe mit Microcontroller-Sensoren, einfacher Registrierung & Custom-Namen.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line feature-card-icon"></i>
+                <h4>Sensordaten & Messwerte</h4>
+                <p>Messung von Bodenfeuchtigkeit, Temperatur & Luftfeuchtigkeit inkl. historischer Verlaufsdiagramme.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bell feature-card-icon"></i>
+                <h4>Push-Benachrichtigungen</h4>
+                <p>Echtzeit-Warnungen via Firebase Cloud Messaging für kritische Wasserstände & Batteriewerte.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-book-open-reader feature-card-icon"></i>
+                <h4>Pflanzenkatalog</h4>
+                <p>Umfangreicher Zimmerpflanzen-Katalog mit Pflege-Tipps & hochauflösenden Wikimedia Commons Bildern.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-qrcode feature-card-icon"></i>
+                <h4>WLAN- & µC-Assistent</h4>
+                <p>Geführter Hardware-Einrichtungsassistent via QR-Code Scan für schnelle Inbetriebnahme.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-halved feature-card-icon"></i>
+                <h4>Sicherheit & Cloud</h4>
+                <p>PostgreSQL-Datenbank auf Supabase-Basis mit Row-Level Security (RLS) & TLS-Verschlüsselung.</p>
+            </div>
+        </div>
+
+        <!-- Screenshots Gallery (Rahmenlos) -->
+        <h3 class="section-title"><i class="fas fa-images"></i> Screenshots</h3>
+        <div id="dyn-screenshots-gallery" class="screenshots-container">
+            <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Screenshot 1">
+            <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Screenshot 2">
+            <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Screenshot 3">
+        </div>
+
+        <!-- Technical Specs Grid -->
+        <h3 class="section-title"><i class="fas fa-sliders-h"></i> Technische Spezifikationen</h3>
+        <div class="specs-grid">
+            <div class="spec-item">
+                <div class="spec-label">Version</div>
+                <div id="spec-version" class="spec-value">0.1.3 (14)</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Dateigröße</div>
+                <div id="spec-size" class="spec-value">57.9 MB</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Zuletzt Aktualisiert</div>
+                <div id="spec-updated" class="spec-value">09.08.2026</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-label">Ziel-Plattform</div>
+                <div id="spec-target-sdk" class="spec-value">Android 15 (API 35)</div>
+            </div>
+        </div>
+
+        <!-- Documentation Cards (Anzeige der info/ Dateiein) -->
+        <h3 class="section-title"><i class="fas fa-folder-open"></i> Dokumente & Lizenzen</h3>
+        <div class="docs-grid">
+            <div class="doc-card" onclick="openDocsModal('changelog')">
+                <div>
+                    <div class="doc-card-title"><i class="fas fa-history" style="color: var(--primary-color);"></i> Changelog</div>
+                    <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis v0.1.4 mit allen Änderungen und Bugfixes.</div>
+                </div>
+                <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
+            </div>
+
+            <div class="doc-card" onclick="openDocsModal('readme')">
+                <div>
+                    <div class="doc-card-title"><i class="fas fa-file-lines" style="color: var(--primary-color);"></i> Projekt-Handbuch (README)</div>
+                    <div class="doc-card-desc">Vollständiges Handbuch inkl. Installation, Bauanleitung, Supabase Backend & Architektur.</div>
+                </div>
+                <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
+            </div>
+
+            <div class="doc-card" onclick="openDocsModal('licenses')">
+                <div>
+                    <div class="doc-card-title"><i class="fas fa-scale-balanced" style="color: var(--primary-color);"></i> Drittanbieter-Hinweise</div>
+                    <div class="doc-card-desc">Übersicht der verwendeten Open-Source Bibliotheken, Lizenzen & Wikimedia Commons Attributierungen.</div>
+                </div>
+                <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
+            </div>
+        </div>
+
+        <!-- Permissions Accordion -->
+        <div class="permissions-box">
+            <div id="permissions-toggle-header" class="permissions-header">
+                <span><i class="fas fa-shield-alt"></i> Erforderliche App-Berechtigungen</span>
+                <i id="permissions-toggle-icon" class="fas fa-chevron-down"></i>
+            </div>
+            <div id="dyn-permissions-list" class="permissions-list" style="display: none;">
+                <div class="perm-item"><i class="fab fa-bluetooth-b perm-icon"></i> <span>Bluetooth Verbindungen & Suche</span></div>
+                <div class="perm-item"><i class="fas fa-camera perm-icon"></i> <span>Kamerazugriff</span></div>
+                <div class="perm-item"><i class="fas fa-wifi perm-icon"></i> <span>Netzwerk- & Internetzugriff</span></div>
+                <div class="perm-item"><i class="fas fa-bell perm-icon"></i> <span>Benachrichtigungen senden</span></div>
+                <div class="perm-item"><i class="fas fa-location-dot perm-icon"></i> <span>Standort (für BLE Geräte-Scan)</span></div>
+            </div>
+        </div>
+    </article>
+</section>

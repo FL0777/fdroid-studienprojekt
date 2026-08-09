@@ -1,0 +1,99 @@
+<!-- SECTION 3: APP-INSTALLATION -->
+<section id="installation" class="content-section">
+    <article class="repo-card">
+        <div class="section-header-bar">
+            <h2 class="section-header-title">
+                <i class="fas fa-download" style="color: var(--primary-color);"></i>
+                <span>App-Installation &amp; F-Droid Repository</span>
+            </h2>
+            <span class="section-header-subtitle">Automatische App-Updates via F-Droid Client</span>
+        </div>
+        
+        <div style="padding: 30px;">
+
+            <!-- F-Droid Explanation Intro Banner -->
+            <div style="background: #F8FAFC; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 18px 22px; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 14px;">
+                <i class="fab fa-android" style="font-size: 1.8rem; color: #3DDC84; margin-top: 2px; flex-shrink: 0;"></i>
+                <div>
+                    <h4 style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                        Was ist F-Droid &amp; warum wird es empfohlen?
+                    </h4>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.55;">
+                        <strong>F-Droid</strong> ist ein lizenzfreier Open-Source App-Store für Android. Über die F-Droid App erhält deine Installation automatische Sicherheits- und Funktions-Updates direkt aus unserem Studienprojekt-Repository.
+                    </p>
+                </div>
+            </div>
+
+            <div class="fdroid-setup-grid">
+                
+                <!-- Box 1: F-Droid Client Installation -->
+                <div class="setup-box">
+                    <span class="badge-fdroid" style="margin-bottom: 10px;">Schritt 1</span>
+                    <h3><i class="fab fa-android" style="color: #3DDC84;"></i> F-Droid Client App</h3>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; min-height: 48px; text-align: center; line-height: 1.4;">
+                        Falls F-Droid noch nicht installiert ist,<br>lade zuerst die offizielle Client-App herunter:
+                    </p>
+
+                    <div class="qr-box">
+                        <img class="qr-code-img" 
+                             src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://f-droid.org/de/packages/org.fdroid.fdroid/" 
+                             alt="F-Droid Client App QR Code">
+                    </div>
+
+                    <a href="https://f-droid.org/de/packages/org.fdroid.fdroid/" target="_blank" class="btn-secondary" style="width: 100%; justify-content: center; margin-top: auto; padding: 10px 12px; font-size: 0.85rem;">
+                        <i class="fas fa-external-link-alt"></i> F-Droid Download-Seite
+                    </a>
+                </div>
+
+                <!-- Box 2: Repository Hinzufügen (Assets Repo Icon QR Code) -->
+                <div class="setup-box">
+                    <span class="badge-fdroid" style="margin-bottom: 10px;">Schritt 2</span>
+                    <h3><i class="fas fa-qrcode" style="color: var(--primary-color);"></i> Repo Hinzufügen</h3>
+                    <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px; min-height: 48px; text-align: center; line-height: 1.4;">
+                        Scanne diesen QR-Code in F-Droid<br>(<em>Einstellungen &rarr; Paketquellen &rarr; + Icon</em>):
+                    </p>
+
+                    <div class="qr-box">
+                        <img class="qr-code-img" 
+                             src="./web/repo_icon.png" 
+                             alt="Studienprojekt Repo QR Code">
+                    </div>
+
+                    <div style="display: flex; gap: 8px; width: 100%; margin-top: auto; flex-wrap: wrap;">
+                        <button class="btn-secondary btn-copy" data-copy-target="repo-url-text" style="flex: 1; min-width: 110px; justify-content: center; padding: 10px 12px; font-size: 0.85rem;">
+                            <i class="fas fa-copy"></i> Kopieren
+                        </button>
+                        <a href="./repo" target="_blank" class="btn-secondary" style="flex: 1; min-width: 110px; justify-content: center; padding: 10px 12px; font-size: 0.85rem;" title="Repository-URL im Browser öffnen">
+                            <i class="fas fa-external-link-alt"></i> Öffnen
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Manuelle APK-Download Box (Nicht empfohlen Hinweis) -->
+            <div style="margin-top: 30px; text-align: center; background: #F8FAFC; border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 22px;">
+                <h4 style="font-weight: 700; margin-bottom: 6px; color: var(--text-main);">
+                    <i class="fas fa-file-arrow-down" style="color: var(--primary-color);"></i> Direkt-Download der APK-Datei
+                </h4>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px;">
+                    Alternative manuelle Installation direkt ohne F-Droid Client:
+                </p>
+
+                <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.85rem; color: #92400E; display: inline-flex; align-items: center; gap: 10px; max-width: 680px; text-align: left;">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 1.1rem; flex-shrink: 0; color: #D97706;"></i>
+                    <span><strong>Nicht empfohlen:</strong> Beim Direkt-Download der APK werden <em>keine automatischen App-Updates</em> empfangen. Für automatische Updates verwende bitte die F-Droid Installation (Schritt 1 &amp; 2).</span>
+                </div>
+
+                <div>
+                    <a id="dyn-download-btn" href="./repo/studienprojekt_v0.1.3.apk" class="btn-download" style="display: inline-flex;">
+                        <i class="fas fa-download"></i> APK-Datei Direkt Herunterladen (v0.1.3 • 57.9 MB)
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hidden element for Step 2 copy button target -->
+            <span id="repo-url-text" style="display:none;">https://fl0777.github.io/studienprojekt-fdroid/repo</span>
+        </div>
+    </article>
+</section>
