@@ -75,12 +75,36 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
             </div>
         </div>
 
-        <!-- Screenshots Gallery (Rahmenlos) -->
-        <h3 class="section-title"><i class="fas fa-images"></i> Screenshots</h3>
+        <!-- Screenshots & Videos Gallery -->
+        <h3 class="section-title"><i class="fas fa-photo-film"></i> Screenshots &amp; Demo-Videos</h3>
         <div id="dyn-screenshots-gallery" class="screenshots-container">
-            <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Screenshot 1">
-            <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Screenshot 2">
-            <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Screenshot 3">
+            <div class="media-item-box">
+                <div class="media-thumb-wrapper screenshot-thumb" data-index="0" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" data-caption="Dashboard &amp; Sensorübersicht" title="Bild in Vollbild anzeigen">
+                    <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Dashboard &amp; Sensorübersicht">
+                </div>
+                <span class="media-caption">Dashboard &amp; Sensorübersicht</span>
+            </div>
+            <div class="media-item-box">
+                <div class="media-thumb-wrapper screenshot-thumb" data-index="1" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" data-caption="Pflanzenkatalog &amp; Pflegetipps" title="Bild in Vollbild anzeigen">
+                    <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Pflanzenkatalog &amp; Pflegetipps">
+                </div>
+                <span class="media-caption">Pflanzenkatalog &amp; Pflegetipps</span>
+            </div>
+            <div class="media-item-box">
+                <div class="media-thumb-wrapper screenshot-thumb" data-index="2" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" data-caption="Bewässerungseinstellungen" title="Bild in Vollbild anzeigen">
+                    <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Bewässerungseinstellungen">
+                </div>
+                <span class="media-caption">Bewässerungseinstellungen</span>
+            </div>
+            <div class="media-item-box">
+                <div class="media-thumb-wrapper screenshot-thumb video-thumb" data-index="3" data-type="video" data-src="./web/videos/app-videos/4.mp4" data-caption="Live-Demonstration Bewässerungsvorgang">
+                    <video class="screenshot-thumb-video" src="./web/videos/app-videos/4.mp4" muted playsinline controls controlsList="nodownload noplaybackrate noremoteplayback novolume" onended="this.currentTime=0; this.pause();" style="border: none; background: transparent; object-fit: contain;"></video>
+                    <button class="video-expand-btn" title="In Vollbildansicht / Lightbox öffnen" aria-label="Vollbildansicht">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                </div>
+                <span class="media-caption">Live-Demonstration Bewässerungsvorgang</span>
+            </div>
         </div>
 
         <!-- Technical Specs Grid -->
@@ -110,14 +134,14 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
             <div class="doc-card" onclick="openDocsModal('changelog')">
                 <div>
                     <div class="doc-card-title"><i class="fas fa-history" style="color: var(--primary-color);"></i> Changelog</div>
-                    <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis v0.1.4 mit allen Änderungen und Bugfixes.</div>
+                    <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis v0.1.3 mit allen Änderungen und Bugfixes.</div>
                 </div>
                 <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
             </div>
 
             <div class="doc-card" onclick="openDocsModal('readme')">
                 <div>
-                    <div class="doc-card-title"><i class="fas fa-file-lines" style="color: var(--primary-color);"></i> Projekt-Handbuch (README)</div>
+                    <div class="doc-card-title"><i class="fas fa-file-lines" style="color: var(--primary-color);"></i> App-Handbuch (README)</div>
                     <div class="doc-card-desc">Vollständiges Handbuch inkl. Installation, Bauanleitung, Supabase Backend & Architektur.</div>
                 </div>
                 <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>

@@ -9,11 +9,17 @@ This document defines the token-efficient specification for adding, modifying, a
 The web showcase uses a modular section architecture located in the `web/sections/` directory:
 
 ```
-web/sections/
-├── sections.json         # Master section registry
-├── poster.html           # Section 1: Project Poster & Documentation
-├── showcase.html         # Section 2: App Showcase
-└── installation.html     # Section 3: App Installation & F-Droid Repo
+web/
+├── css/                  # Styling & themes
+├── js/                   # Application logic & loaders
+├── pdf/                  # PDF documents (e.g. poster.pdf)
+├── images/               # Web image assets (e.g. repo_icon.png, github_icon.png)
+├── videos/               # Video demonstration assets
+└── sections/
+    ├── sections.json     # Master section registry
+    ├── poster.html       # Section 1: Project Poster & Documentation
+    ├── showcase.html     # Section 2: App Showcase
+    └── installation.html # Section 3: App Installation & F-Droid Repo
 ```
 
 ---
@@ -69,3 +75,38 @@ Add the link to the navbar in `index.html`:
 1. **Header Consistency:** Always use `.section-header-bar`, `.section-header-title`, and `.section-header-subtitle`.
 2. **Smooth Scrolling & ScrollSpy:** Ensure the `<section id="...">` matches the navbar link `href="#..."`. The automatic `initScrollSpy()` function will highlight active links automatically.
 3. **Card Container:** Wrap section bodies inside `<article class="app-card">` or `<article class="repo-card">` for consistent padding and shadow borders.
+
+---
+
+## 🖼️ Media Captions Configuration
+
+Captions for images (`1.png`, `2.png`, `3.png`) and videos (`4.mp4`) can be configured in `web/config/media.json`:
+
+### Method 1: Config File (`web/config/media.json`) [Recommended]
+Add or edit media entries in `web/config/media.json`:
+
+```json
+{
+  "app_media": [
+    {
+      "file": "1.png",
+      "type": "image",
+      "caption": "Dashboard & Sensorübersicht"
+    },
+    {
+      "file": "4.mp4",
+      "type": "video",
+      "caption": "Live-Demonstration Bewässerungsvorgang"
+    }
+  ]
+}
+```
+
+### Method 2: HTML `data-caption` Attribute
+Set the `data-caption="..."` attribute directly on `.media-thumb-wrapper`:
+
+```html
+<div class="media-thumb-wrapper" data-caption="Meine individuelle Unterschrift">
+    <img src="..." alt="...">
+</div>
+```

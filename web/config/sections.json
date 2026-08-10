@@ -1,0 +1,25 @@
+{
+  "sections": [
+    {
+      "id": "poster",
+      "title": "Projekt Poster / Dokumentation",
+      "subtitle": "Studienprojekt Poster im PDF-Viewer",
+      "icon": "fa-file-pdf",
+      "file": "web/sections/poster.html"
+    },
+    {
+      "id": "showcase",
+      "title": "App Showcase",
+      "subtitle": "Detaillierter App-Überblick & Dokumentation",
+      "icon": "fa-mobile-alt",
+      "file": "web/sections/showcase.html"
+    },
+    {
+      "id": "installation",
+      "title": "App-Installation & F-Droid Repository",
+      "subtitle": "Automatische App-Updates via F-Droid Client",
+      "icon": "fa-download",
+      "file": "web/sections/installation.html"
+    }
+  ]
+}

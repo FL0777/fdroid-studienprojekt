@@ -10,17 +10,39 @@ let currentDocLang = 'de';
 let currentScreenshotIndex = 0;
 let screenshotList = [];
 
-document.addEventListener('DOMContentLoaded', () => {
+// Flexible media captions dictionary (Key: filename, Value: caption text)
+const defaultMediaCaptions = {
+    '1.png': 'Konfigurationsassistent',
+    '2.png': 'Home-Übersicht',
+    '3.png': 'Sensorenansicht',
+    '4.mp4': 'Live-Demonstration App-Konfiguration'
+};
+
+let userMediaConfig = null;
+
+async function loadUserMediaConfig() {
+    try {
+        const res = await fetch('./web/config/media.json');
+        if (res.ok) {
+            userMediaConfig = await res.json();
+        }
+    } catch (e) {
+        console.log('Using default media mapping fallback:', e.message);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
     initCopyButtons();
     initLightbox();
     initPermissionsToggle();
     initDocsModalEvents();
     initShareModal();
     initScrollSpy();
+    await loadUserMediaConfig();
     fetchFDroidMetadata();
     renderPdfPoster();
     adjustPosterIframeHeight();
-    
+
     // Re-render poster canvas and adjust height on window resize to ensure full crisp scaling
     window.addEventListener('resize', debounce(() => {
         renderPdfPoster();
@@ -126,7 +148,7 @@ async function openDocsModal(docType, lang) {
     } else if (currentDocType === 'readme') {
         filename = currentDocLang === 'en' ? './info/README_en.md' : './info/README.md';
         templateId = currentDocLang === 'en' ? 'doc-readme-en' : 'doc-readme-de';
-        title = currentDocLang === 'en' ? 'Project Manual & Documentation' : 'Projekt-Handbuch & Dokumentation';
+        title = currentDocLang === 'en' ? 'App Manual & Documentation' : 'App-Handbuch & Dokumentation';
     } else if (currentDocType === 'licenses') {
         filename = currentDocLang === 'en' ? './info/THIRD_PARTY_NOTICES_en.md' : './info/THIRD_PARTY_NOTICES.md';
         templateId = currentDocLang === 'en' ? 'doc-licenses-en' : 'doc-licenses-de';
@@ -242,7 +264,7 @@ let renderPdfPending = false;
 async function getPdfPage() {
     if (!cachedPdfPagePromise) {
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        cachedPdfPagePromise = pdfjsLib.getDocument('./web/poster.pdf').promise.then(pdf => pdf.getPage(1));
+        cachedPdfPagePromise = pdfjsLib.getDocument('./web/pdf/poster.pdf').promise.then(pdf => pdf.getPage(1));
     }
     return cachedPdfPagePromise;
 }
@@ -396,11 +418,11 @@ function renderRepoAndApp(data) {
         const iconSrc = `./repo/com.example.studienprojekt/en-US/icon.png`;
         if (iconEl) {
             iconEl.src = iconSrc;
-            iconEl.onerror = () => { iconEl.src = `./web/repo_icon.png`; };
+            iconEl.onerror = () => { iconEl.src = `./web/images/repo_icon.png`; };
         }
         if (navIconEl) {
             navIconEl.src = iconSrc;
-            navIconEl.onerror = () => { navIconEl.src = `./web/repo_icon.png`; };
+            navIconEl.onerror = () => { navIconEl.src = `./web/images/repo_icon.png`; };
         }
         if (faviconEl) {
             faviconEl.href = iconSrc;
@@ -449,26 +471,103 @@ function renderScreenshots(app) {
     const galleryEl = document.getElementById('dyn-screenshots-gallery');
     if (!galleryEl) return;
 
+    const mediaList = [];
+    const pkgName = app ? app.packageName : 'com.example.studienprojekt';
+
+    // 1. Gather Screenshots from F-Droid App metadata
     let screenshots = [];
-    if (app.localized) {
+    if (app && app.localized) {
         const loc = app.localized['de-DE'] || app.localized['en-US'] || Object.values(app.localized)[0];
         if (loc && loc.phoneScreenshots) {
             screenshots = loc.phoneScreenshots;
         }
     }
-
     if (screenshots.length === 0) {
         screenshots = ['1.png', '2.png', '3.png'];
     }
 
-    galleryEl.innerHTML = screenshots.map(scr => `
-        <img class="screenshot-thumb" 
-             src="./repo/${app.packageName}/en-US/phoneScreenshots/${scr}" 
-             alt="App Screenshot" 
-             onerror="this.style.display='none'">
-    `).join('');
+    if (userMediaConfig && Array.isArray(userMediaConfig.app_media) && userMediaConfig.app_media.length > 0) {
+        userMediaConfig.app_media.forEach((item, idx) => {
+            const isVid = item.type === 'video' || item.file.endsWith('.mp4');
+            const src = isVid ? `./web/videos/app-videos/${item.file}` : `./repo/${pkgName}/en-US/phoneScreenshots/${item.file}`;
+            const numMatch = item.file.match(/^(\d+)/);
+            const num = numMatch ? parseInt(numMatch[1], 10) : (idx + 1);
+            mediaList.push({
+                num: num,
+                type: isVid ? 'video' : 'image',
+                src: src,
+                filename: item.file,
+                caption: item.caption || `Medium ${num}`
+            });
+        });
+    } else {
+        screenshots.forEach(scr => {
+            const match = scr.match(/^(\d+)/);
+            const num = match ? parseInt(match[1], 10) : 999;
+            const caption = defaultMediaCaptions[scr] || `Screenshot ${num}`;
+            mediaList.push({
+                num: num,
+                type: 'image',
+                src: `./repo/${pkgName}/en-US/phoneScreenshots/${scr}`,
+                filename: scr,
+                caption: caption
+            });
+        });
 
-    initLightbox();
+        const videoFiles = ['4.mp4'];
+        videoFiles.forEach(vid => {
+            const match = vid.match(/^(\d+)/);
+            const num = match ? parseInt(match[1], 10) : 999;
+            const caption = defaultMediaCaptions[vid] || `Demo Video ${num}`;
+            mediaList.push({
+                num: num,
+                type: 'video',
+                src: `./web/videos/app-videos/${vid}`,
+                filename: vid,
+                caption: caption
+            });
+        });
+    }
+
+    // 3. Sort media items numerically by filename prefix (1.png, 2.png, 3.png, 4.mp4, ...)
+    mediaList.sort((a, b) => a.num - b.num);
+
+    // 4. Render Gallery HTML
+    galleryEl.innerHTML = mediaList.map((item, index) => {
+        const captionHtml = item.caption ? `<span class="media-caption">${item.caption}</span>` : '';
+        if (item.type === 'video') {
+            return `
+                <div class="media-item-box">
+                    <div class="media-thumb-wrapper screenshot-thumb video-thumb" data-index="${index}" data-type="video" data-src="${item.src}" data-caption="${item.caption}">
+                        <video class="screenshot-thumb-video" src="${item.src}" muted playsinline controls controlsList="nodownload noplaybackrate noremoteplayback novolume" style="border: none; background: transparent; object-fit: contain;"></video>
+                        <button class="video-expand-btn" title="In Vollbildansicht / Lightbox öffnen" aria-label="Vollbildansicht">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                    ${captionHtml}
+                </div>
+            `;
+        } else {
+            return `
+                <div class="media-item-box">
+                    <div class="media-thumb-wrapper screenshot-thumb" data-index="${index}" data-type="image" data-src="${item.src}" data-caption="${item.caption}" title="Bild in Vollbild anzeigen">
+                        <img class="screenshot-thumb-img" src="${item.src}" alt="${item.caption}" onerror="this.parentElement.parentElement.style.display='none'">
+                    </div>
+                    ${captionHtml}
+                </div>
+            `;
+        }
+    }).join('');
+
+    // Attach ended listener to reset video to initial start frame after playback
+    galleryEl.querySelectorAll('video').forEach(vid => {
+        vid.addEventListener('ended', () => {
+            vid.currentTime = 0;
+            vid.pause();
+        });
+    });
+
+    initLightbox(mediaList);
 }
 
 function renderPermissions(perms) {
@@ -532,64 +631,132 @@ function getAndroidVersionName(api) {
     return versions[api] || `API ${api}`;
 }
 
-// Lightbox Carousel Handler (Rotatable & Fullscreen)
-function initLightbox() {
+// Lightbox Carousel Handler (Supports Images & Videos)
+function initLightbox(customMediaList) {
     const modal = document.getElementById('lightbox-modal');
     const modalImg = document.getElementById('lightbox-img');
+    const modalVideo = document.getElementById('lightbox-video');
     const closeBtn = document.getElementById('lightbox-close');
     const prevBtn = document.getElementById('lightbox-prev');
     const nextBtn = document.getElementById('lightbox-next');
     const counterEl = document.getElementById('lightbox-counter');
-    const thumbs = Array.from(document.querySelectorAll('.screenshot-thumb'));
+    const thumbWrappers = Array.from(document.querySelectorAll('.media-thumb-wrapper, .screenshot-thumb'));
 
-    if (!modal || !modalImg) return;
+    if (!modal) return;
 
-    screenshotList = thumbs.map(t => t.src);
+    if (customMediaList && customMediaList.length > 0) {
+        screenshotList = customMediaList;
+    } else {
+        screenshotList = thumbWrappers.map(w => {
+            const isVid = w.classList.contains('video-thumb') || w.tagName.toLowerCase() === 'video' || (w.getAttribute('data-type') === 'video');
+            const src = w.getAttribute('data-src') || w.src || w.querySelector('img, video')?.src;
+            return {
+                type: isVid ? 'video' : 'image',
+                src: src
+            };
+        });
+    }
 
-    thumbs.forEach((thumb, idx) => {
-        thumb.onclick = (e) => {
-            e.stopPropagation();
-            currentScreenshotIndex = idx;
-            updateLightboxImage();
-            modal.classList.add('active');
-        };
+    thumbWrappers.forEach((wrapper, idx) => {
+        const expandBtn = wrapper.querySelector('.video-expand-btn');
+        if (expandBtn) {
+            expandBtn.onclick = (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                currentScreenshotIndex = idx;
+                updateLightboxMedia();
+                modal.classList.add('active');
+            };
+        }
+
+        if (!wrapper.classList.contains('video-thumb')) {
+            wrapper.onclick = (e) => {
+                e.stopPropagation();
+                currentScreenshotIndex = idx;
+                updateLightboxMedia();
+                modal.classList.add('active');
+            };
+        } else {
+            wrapper.ondblclick = (e) => {
+                e.stopPropagation();
+                currentScreenshotIndex = idx;
+                updateLightboxMedia();
+                modal.classList.add('active');
+            };
+        }
     });
 
-    function updateLightboxImage() {
+    function updateLightboxMedia() {
         if (screenshotList.length === 0) return;
-        modalImg.style.opacity = '0.5';
-        setTimeout(() => {
-            modalImg.src = screenshotList[currentScreenshotIndex];
-            modalImg.style.opacity = '1';
-        }, 100);
+        const currentItem = screenshotList[currentScreenshotIndex];
+        const mediaSrc = typeof currentItem === 'string' ? currentItem : currentItem.src;
+        const mediaType = typeof currentItem === 'object' && currentItem.type ? currentItem.type : (mediaSrc.endsWith('.mp4') ? 'video' : 'image');
+        const captionText = typeof currentItem === 'object' && currentItem.caption ? currentItem.caption : (defaultMediaCaptions[mediaSrc.split('/').pop()] || '');
+
+        const captionEl = document.getElementById('lightbox-caption');
+        if (captionEl) {
+            captionEl.textContent = captionText;
+            captionEl.style.display = captionText ? 'block' : 'none';
+        }
+
+        if (mediaType === 'video') {
+            if (modalImg) modalImg.style.display = 'none';
+            if (modalVideo) {
+                modalVideo.style.display = 'block';
+                modalVideo.muted = true;
+                modalVideo.src = mediaSrc;
+                modalVideo.onended = () => {
+                    modalVideo.currentTime = 0;
+                    modalVideo.pause();
+                };
+                modalVideo.play().catch(e => console.log('Autoplay prevented:', e));
+            }
+        } else {
+            if (modalVideo) {
+                modalVideo.pause();
+                modalVideo.style.display = 'none';
+            }
+            if (modalImg) {
+                modalImg.style.display = 'block';
+                modalImg.style.opacity = '0.5';
+                setTimeout(() => {
+                    modalImg.src = mediaSrc;
+                    modalImg.style.opacity = '1';
+                }, 80);
+            }
+        }
 
         if (counterEl) {
             counterEl.textContent = `${currentScreenshotIndex + 1} / ${screenshotList.length}`;
         }
     }
 
+    function closeModal() {
+        if (modalVideo) {
+            modalVideo.pause();
+        }
+        modal.classList.remove('active');
+    }
+
     function showNext() {
         if (screenshotList.length === 0) return;
         currentScreenshotIndex = (currentScreenshotIndex + 1) % screenshotList.length;
-        updateLightboxImage();
+        updateLightboxMedia();
     }
 
     function showPrev() {
         if (screenshotList.length === 0) return;
         currentScreenshotIndex = (currentScreenshotIndex - 1 + screenshotList.length) % screenshotList.length;
-        updateLightboxImage();
+        updateLightboxMedia();
     }
 
     if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); showPrev(); };
     if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); showNext(); };
-
-    if (closeBtn) {
-        closeBtn.onclick = () => modal.classList.remove('active');
-    }
+    if (closeBtn) closeBtn.onclick = closeModal;
 
     modal.onclick = (e) => {
         if (e.target === modal || e.target.classList.contains('modal-overlay')) {
-            modal.classList.remove('active');
+            closeModal();
         }
     };
 
@@ -598,7 +765,7 @@ function initLightbox() {
         if (!modal.classList.contains('active')) return;
         if (e.key === 'ArrowRight') showNext();
         if (e.key === 'ArrowLeft') showPrev();
-        if (e.key === 'Escape') modal.classList.remove('active');
+        if (e.key === 'Escape') closeModal();
     };
 }
 
@@ -668,7 +835,7 @@ function debounce(func, wait) {
 
 // Helper to open PDF in new tab
 function openPdfFullscreen() {
-    window.open('./web/poster.pdf', '_blank');
+    window.open('./web/pdf/poster.pdf', '_blank');
 }
 
 // Helper to reset poster scale by reloading page

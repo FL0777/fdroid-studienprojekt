@@ -31,7 +31,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <div class="brand">
-                <img id="nav-app-icon" class="brand-icon-img" src="./repo/com.example.studienprojekt/en-US/icon.png" alt="Smart Plant Pot Logo" onerror="this.src='./web/repo_icon.png'">
+                <img id="nav-app-icon" class="brand-icon-img" src="./repo/com.example.studienprojekt/en-US/icon.png" alt="Smart Plant Pot Logo" onerror="this.src='./web/images/repo_icon.png'">
                 <span>Smart Plant Pot</span>
                 <button class="brand-share-btn" onclick="openShareModal()" title="Seite teilen / QR-Code" aria-label="Seite teilen">
                     <i class="fas fa-share-nodes"></i>
@@ -97,7 +97,7 @@
                         <button onclick="openPdfFullscreen()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">
                             <i class="fas fa-expand"></i> Vollbild / Neuer Tab
                         </button>
-                        <a href="./web/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
+                        <a href="./web/pdf/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
                             <i class="fas fa-download"></i> PDF Download
                         </a>
                     </div>
@@ -106,7 +106,7 @@
                 <!-- Nahtlose Poster Rendering-Area (HTML5 Canvas via PDF.js oder native IFrame) -->
                 <div id="poster-container" class="poster-canvas-container">
                     <canvas id="poster-canvas" class="poster-canvas" title="Klick für Vollbildansicht"></canvas>
-                    <iframe id="poster-object-fallback" src="./web/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
+                    <iframe id="poster-object-fallback" src="./web/pdf/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
                 </div>
             </article>
         </section>
@@ -188,12 +188,36 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
                     </div>
                 </div>
 
-                <!-- Screenshots Gallery (Rahmenlos) -->
-                <h3 class="section-title"><i class="fas fa-images"></i> Screenshots</h3>
+                <!-- Screenshots & Videos Gallery -->
+                <h3 class="section-title"><i class="fas fa-photo-film"></i> Screenshots &amp; Demo-Videos</h3>
                 <div id="dyn-screenshots-gallery" class="screenshots-container">
-                    <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Screenshot 1">
-                    <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Screenshot 2">
-                    <img class="screenshot-thumb" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Screenshot 3">
+                    <div class="media-item-box">
+                        <div class="media-thumb-wrapper screenshot-thumb" data-index="0" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" data-caption="Dashboard &amp; Sensorübersicht" title="Bild in Vollbild anzeigen">
+                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Dashboard &amp; Sensorübersicht">
+                        </div>
+                        <span class="media-caption">Dashboard &amp; Sensorübersicht</span>
+                    </div>
+                    <div class="media-item-box">
+                        <div class="media-thumb-wrapper screenshot-thumb" data-index="1" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" data-caption="Pflanzenkatalog &amp; Pflegetipps" title="Bild in Vollbild anzeigen">
+                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Pflanzenkatalog &amp; Pflegetipps">
+                        </div>
+                        <span class="media-caption">Pflanzenkatalog &amp; Pflegetipps</span>
+                    </div>
+                    <div class="media-item-box">
+                        <div class="media-thumb-wrapper screenshot-thumb" data-index="2" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" data-caption="Bewässerungseinstellungen" title="Bild in Vollbild anzeigen">
+                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Bewässerungseinstellungen">
+                        </div>
+                        <span class="media-caption">Bewässerungseinstellungen</span>
+                    </div>
+                    <div class="media-item-box">
+                        <div class="media-thumb-wrapper screenshot-thumb video-thumb" data-index="3" data-type="video" data-src="./web/videos/app-videos/4.mp4" data-caption="Live-Demonstration Bewässerungsvorgang">
+                            <video class="screenshot-thumb-video" src="./web/videos/app-videos/4.mp4" muted playsinline controls controlsList="nodownload noplaybackrate noremoteplayback novolume" onended="this.currentTime=0; this.pause();" style="border: none; background: transparent; object-fit: contain;"></video>
+                            <button class="video-expand-btn" title="In Vollbildansicht / Lightbox öffnen" aria-label="Vollbildansicht">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        <span class="media-caption">Live-Demonstration Bewässerungsvorgang</span>
+                    </div>
                 </div>
 
                 <!-- Technical Specs Grid -->
@@ -223,14 +247,14 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
                     <div class="doc-card" onclick="openDocsModal('changelog')">
                         <div>
                             <div class="doc-card-title"><i class="fas fa-history" style="color: var(--primary-color);"></i> Changelog</div>
-                            <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis v0.1.4 mit allen Änderungen und Bugfixes.</div>
+                            <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis v0.1.3 mit allen Änderungen und Bugfixes.</div>
                         </div>
                         <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
                     </div>
 
                     <div class="doc-card" onclick="openDocsModal('readme')">
                         <div>
-                            <div class="doc-card-title"><i class="fas fa-file-lines" style="color: var(--primary-color);"></i> Projekt-Handbuch (README)</div>
+                            <div class="doc-card-title"><i class="fas fa-file-lines" style="color: var(--primary-color);"></i> App-Handbuch (README)</div>
                             <div class="doc-card-desc">Vollständiges Handbuch inkl. Installation, Bauanleitung, Supabase Backend & Architektur.</div>
                         </div>
                         <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
@@ -319,7 +343,7 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
 
                             <div class="qr-box">
                                 <img class="qr-code-img" 
-                                     src="./web/repo_icon.png" 
+                                     src="./web/images/repo_icon.png" 
                                      alt="Studienprojekt Repo QR Code">
                             </div>
 
@@ -401,7 +425,7 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
 
                 <!-- QR Code Box -->
                 <div style="padding: 12px; border-radius: 16px; background: #F8FAFC; border: 1px solid var(--card-border); box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                    <img src="./web/github_icon.png" alt="GitHub Pages QR Code" style="width: 190px; height: 190px; object-fit: contain; display: block; border-radius: 8px;">
+                    <img src="./web/images/github_icon.png" alt="GitHub Pages QR Code" style="width: 190px; height: 190px; object-fit: contain; display: block; border-radius: 8px;">
                 </div>
 
                 <!-- Share URL & Copy Button -->
@@ -932,7 +956,9 @@ This app uses open-source libraries from the Android, Kotlin, and backend ecosys
         
         <div class="lightbox-content-box">
             <img id="lightbox-img" class="modal-img" src="" alt="Enlarged Screenshot">
-            <div id="lightbox-counter" class="lightbox-counter">1 / 3</div>
+            <video id="lightbox-video" class="modal-video" src="" controls autoplay loop style="display: none; max-width: 90vw; max-height: 85vh; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); outline: none;"></video>
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+            <div id="lightbox-counter" class="lightbox-counter">1 / 4</div>
         </div>
 
         <button id="lightbox-next" class="lightbox-nav-btn next-btn" aria-label="Nächstes Bild" title="Nächstes Bild">

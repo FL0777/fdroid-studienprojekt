@@ -13,7 +13,7 @@
                 <button onclick="openPdfFullscreen()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">
                     <i class="fas fa-expand"></i> Vollbild / Neuer Tab
                 </button>
-                <a href="./web/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
+                <a href="./web/pdf/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
                     <i class="fas fa-download"></i> PDF Download
                 </a>
             </div>
@@ -22,7 +22,7 @@
         <!-- Nahtlose Poster Rendering-Area (HTML5 Canvas via PDF.js oder native IFrame) -->
         <div id="poster-container" class="poster-canvas-container">
             <canvas id="poster-canvas" class="poster-canvas" title="Klick für Vollbildansicht"></canvas>
-            <iframe id="poster-object-fallback" src="./web/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
+            <iframe id="poster-object-fallback" src="./web/pdf/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
         </div>
     </article>
 </section>
