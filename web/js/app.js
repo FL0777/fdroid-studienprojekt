@@ -910,7 +910,9 @@ function openShareModal() {
     if (!shareModal) return;
 
     if (urlInput) {
-        urlInput.value = window.location.href;
+        urlInput.value = window.location.href.startsWith('file:') 
+            ? 'https://fl0777.github.io/studienprojekt-fdroid/' 
+            : window.location.href;
     }
     shareModal.classList.add('active');
 }
