@@ -1,0 +1,28 @@
+{
+  "app_media": [
+    {
+      "file": "1.png",
+      "type": "image",
+      "caption": "Konfigurationsassistent",
+      "description": "Geführter Assistentsprozess zur Einrichtung des Pflanzentopfs"
+    },
+    {
+      "file": "2.png",
+      "type": "image",
+      "caption": "Home-Übersicht",
+      "description": "Zentrale Hauptansicht aller verbundenen Pflanzentöpfe"
+    },
+    {
+      "file": "3.png",
+      "type": "image",
+      "caption": "Sensorenansicht",
+      "description": "Echtzeit-Messwerte & historische Diagramme der Sensoren"
+    },
+    {
+      "file": "4.mp4",
+      "type": "video",
+      "caption": "Live-Demonstration App-Konfiguration",
+      "description": "Kurzes Video zur Vorführung des Einrichtungsprozesses in der App"
+    }
+  ]
+}

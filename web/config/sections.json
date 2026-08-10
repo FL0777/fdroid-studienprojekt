@@ -8,18 +8,18 @@
       "file": "web/sections/poster.html"
     },
     {
-      "id": "showcase",
-      "title": "App Showcase",
+      "id": "app-showcase",
+      "title": "App-Showcase",
       "subtitle": "Detaillierter App-Überblick & Dokumentation",
       "icon": "fa-mobile-alt",
-      "file": "web/sections/showcase.html"
+      "file": "web/sections/app-showcase.html"
     },
     {
-      "id": "installation",
+      "id": "app-installation",
       "title": "App-Installation & F-Droid Repository",
       "subtitle": "Automatische App-Updates via F-Droid Client",
       "icon": "fa-download",
-      "file": "web/sections/installation.html"
+      "file": "web/sections/app-installation.html"
     }
   ]
 }

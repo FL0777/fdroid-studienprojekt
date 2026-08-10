@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
     <title>Smart Plant Pot • Studienprojekt F-Droid Repo</title>
-    <meta name="description" content="Offizielle Landing Page für das Studienprojekt Smart Plant Pot (Automatisierte Pflanzenbewässerung): Projektposter, App Showcase & App-Installation.">
+    <meta name="description" content="Offizielle Landing Page für das Studienprojekt Smart Plant Pot (Automatisierte Pflanzenbewässerung): Projektposter, App-Showcase & App-Installation.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +31,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <div class="brand">
-                <img id="nav-app-icon" class="brand-icon-img" src="./repo/com.example.studienprojekt/en-US/icon.png" alt="Smart Plant Pot Logo" onerror="this.src='./web/images/repo_icon.png'">
+                <img id="nav-app-icon" class="brand-icon-img" src="./repo/com.example.studienprojekt/en-US/icon.png" alt="Smart Plant Pot Logo" onerror="this.src='./web/images/app-images/repo_icon.png'">
                 <span>Smart Plant Pot</span>
                 <button class="brand-share-btn" onclick="openShareModal()" title="Seite teilen / QR-Code" aria-label="Seite teilen">
                     <i class="fas fa-share-nodes"></i>
@@ -40,8 +40,8 @@
             <ul class="nav-links">
                 <li><a href="javascript:void(0)" onclick="openDocsModal('about')" class="nav-link">Über</a></li>
                 <li><a href="#poster" class="nav-link">Projekt Poster</a></li>
-                <li><a href="#app-showcase" class="nav-link">App Showcase</a></li>
-                <li><a href="#installation" class="nav-link">App-Installation</a></li>
+                <li><a href="#app-showcase" class="nav-link">App-Showcase</a></li>
+                <li><a href="#app-installation" class="nav-link">App-Installation</a></li>
                 <li>
                     <a href="https://github.com/FL0777/studienprojekt-fdroid" target="_blank" class="btn-secondary" style="padding: 6px 14px; font-size: 0.85rem;">
                         <i class="fab fa-github"></i> GitHub
@@ -74,9 +74,9 @@
                     <i class="fas fa-file-pdf"></i> Projekt Poster
                 </a>
                 <a href="#app-showcase" class="tab-btn">
-                    <i class="fas fa-mobile-alt"></i> App Showcase
+                    <i class="fas fa-mobile-alt"></i> App-Showcase
                 </a>
-                <a href="#installation" class="tab-btn">
+                <a href="#app-installation" class="tab-btn">
                     <i class="fas fa-download"></i> App-Installation
                 </a>
             </div>
@@ -97,7 +97,7 @@
                         <button onclick="openPdfFullscreen()" class="btn-secondary" style="padding: 6px 12px; font-size: 0.85rem;">
                             <i class="fas fa-expand"></i> Vollbild / Neuer Tab
                         </button>
-                        <a href="./web/pdf/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
+                        <a href="./web/pdf/poster/poster.pdf" download="Smart_Plant_Pot_Poster.pdf" class="btn-download" style="padding: 6px 14px; font-size: 0.85rem;">
                             <i class="fas fa-download"></i> PDF Download
                         </a>
                     </div>
@@ -106,7 +106,7 @@
                 <!-- Nahtlose Poster Rendering-Area (HTML5 Canvas via PDF.js oder native IFrame) -->
                 <div id="poster-container" class="poster-canvas-container">
                     <canvas id="poster-canvas" class="poster-canvas" title="Klick für Vollbildansicht"></canvas>
-                    <iframe id="poster-object-fallback" src="./web/pdf/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
+                    <iframe id="poster-object-fallback" src="./web/pdf/poster/poster.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" class="poster-pdf-fallback" title="Projekt Poster PDF Viewer"></iframe>
                 </div>
             </article>
         </section>
@@ -117,7 +117,7 @@
                 <div class="section-header-bar">
                     <h2 class="section-header-title">
                         <i class="fas fa-mobile-alt" style="color: var(--primary-color);"></i>
-                        <span>App Showcase</span>
+                        <span>App-Showcase</span>
                     </h2>
                     <span class="section-header-subtitle">Detaillierter App-Überblick &amp; Dokumentation</span>
                 </div>
@@ -142,7 +142,7 @@
 
                 <!-- Action Bar -->
                 <div class="action-bar">
-                    <a href="#installation" class="btn-download">
+                    <a href="#app-installation" class="btn-download">
                         <i class="fas fa-download"></i> Zur App-Installation & Repo
                     </a>
                 </div>
@@ -192,31 +192,35 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
                 <h3 class="section-title"><i class="fas fa-photo-film"></i> Screenshots &amp; Demo-Videos</h3>
                 <div id="dyn-screenshots-gallery" class="screenshots-container">
                     <div class="media-item-box">
-                        <div class="media-thumb-wrapper screenshot-thumb" data-index="0" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" data-caption="Dashboard &amp; Sensorübersicht" title="Bild in Vollbild anzeigen">
-                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Dashboard &amp; Sensorübersicht">
+                        <div class="media-thumb-wrapper screenshot-thumb" data-index="0" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" data-caption="Konfigurationsassistent" data-description="Geführter Assistentsprozess zur Einrichtung des Pflanzentopfs" title="Bild in Vollbild anzeigen">
+                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/1.png" alt="Konfigurationsassistent">
                         </div>
-                        <span class="media-caption">Dashboard &amp; Sensorübersicht</span>
+                        <span class="media-caption">Konfigurationsassistent</span>
+                        <span class="media-description">Geführter Assistentsprozess zur Einrichtung des Pflanzentopfs</span>
                     </div>
                     <div class="media-item-box">
-                        <div class="media-thumb-wrapper screenshot-thumb" data-index="1" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" data-caption="Pflanzenkatalog &amp; Pflegetipps" title="Bild in Vollbild anzeigen">
-                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Pflanzenkatalog &amp; Pflegetipps">
+                        <div class="media-thumb-wrapper screenshot-thumb" data-index="1" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" data-caption="Home-Übersicht" data-description="Zentrale Hauptansicht aller verbundenen Pflanzentöpfe" title="Bild in Vollbild anzeigen">
+                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/2.png" alt="Home-Übersicht">
                         </div>
-                        <span class="media-caption">Pflanzenkatalog &amp; Pflegetipps</span>
+                        <span class="media-caption">Home-Übersicht</span>
+                        <span class="media-description">Zentrale Hauptansicht aller verbundenen Pflanzentöpfe</span>
                     </div>
                     <div class="media-item-box">
-                        <div class="media-thumb-wrapper screenshot-thumb" data-index="2" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" data-caption="Bewässerungseinstellungen" title="Bild in Vollbild anzeigen">
-                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Bewässerungseinstellungen">
+                        <div class="media-thumb-wrapper screenshot-thumb" data-index="2" data-type="image" data-src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" data-caption="Sensorenansicht" data-description="Echtzeit-Messwerte &amp; historische Diagramme der Sensoren" title="Bild in Vollbild anzeigen">
+                            <img class="screenshot-thumb-img" src="./repo/com.example.studienprojekt/en-US/phoneScreenshots/3.png" alt="Sensorenansicht">
                         </div>
-                        <span class="media-caption">Bewässerungseinstellungen</span>
+                        <span class="media-caption">Sensorenansicht</span>
+                        <span class="media-description">Echtzeit-Messwerte &amp; historische Diagramme der Sensoren</span>
                     </div>
                     <div class="media-item-box">
-                        <div class="media-thumb-wrapper screenshot-thumb video-thumb" data-index="3" data-type="video" data-src="./web/videos/app-videos/4.mp4" data-caption="Live-Demonstration Bewässerungsvorgang">
+                        <div class="media-thumb-wrapper screenshot-thumb video-thumb" data-index="3" data-type="video" data-src="./web/videos/app-videos/4.mp4" data-caption="Live-Demonstration App-Konfiguration" data-description="Kurzes Video zur Vorführung des Einrichtungsprozesses in der App">
                             <video class="screenshot-thumb-video" src="./web/videos/app-videos/4.mp4" muted playsinline controls controlsList="nodownload noplaybackrate noremoteplayback novolume" onended="this.currentTime=0; this.pause();" style="border: none; background: transparent; object-fit: contain;"></video>
                             <button class="video-expand-btn" title="In Vollbildansicht / Lightbox öffnen" aria-label="Vollbildansicht">
                                 <i class="fas fa-expand"></i>
                             </button>
                         </div>
-                        <span class="media-caption">Live-Demonstration Bewässerungsvorgang</span>
+                        <span class="media-caption">Live-Demonstration App-Konfiguration</span>
+                        <span class="media-description">Kurzes Video zur Vorführung des Einrichtungsprozesses in der App</span>
                     </div>
                 </div>
 
@@ -287,7 +291,7 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
         </section>
 
         <!-- SECTION 3: APP-INSTALLATION (F-Droid Repo Setup & Direct APK Download) -->
-        <section id="installation" class="content-section">
+        <section id="app-installation" class="content-section">
             <article class="repo-card">
                 <div class="section-header-bar">
                     <h2 class="section-header-title">
@@ -343,7 +347,7 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
 
                             <div class="qr-box">
                                 <img class="qr-code-img" 
-                                     src="./web/images/repo_icon.png" 
+                                     src="./web/images/app-images/repo_icon.png" 
                                      alt="Studienprojekt Repo QR Code">
                             </div>
 
@@ -958,6 +962,7 @@ This app uses open-source libraries from the Android, Kotlin, and backend ecosys
             <img id="lightbox-img" class="modal-img" src="" alt="Enlarged Screenshot">
             <video id="lightbox-video" class="modal-video" src="" controls autoplay loop style="display: none; max-width: 90vw; max-height: 85vh; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); outline: none;"></video>
             <div id="lightbox-caption" class="lightbox-caption"></div>
+            <div id="lightbox-description" class="lightbox-description"></div>
             <div id="lightbox-counter" class="lightbox-counter">1 / 4</div>
         </div>
 

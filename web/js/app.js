@@ -1,5 +1,5 @@
 /**
- * F-Droid Repository & App Showcase - Application Logic
+ * F-Droid Repository & App-Showcase - Application Logic
  * Automatically fetches and parses repo/index-v1.json
  * Seamless PDF Poster Rendering via PDF.js & Native Dynamic IFrame Height Scaling
  * Interactive Markdown Docs Viewer, Collapsible Changelog Accordions & Fullscreen Lightbox Carousel
@@ -10,19 +10,39 @@ let currentDocLang = 'de';
 let currentScreenshotIndex = 0;
 let screenshotList = [];
 
-// Flexible media captions dictionary (Key: filename, Value: caption text)
-const defaultMediaCaptions = {
-    '1.png': 'Konfigurationsassistent',
-    '2.png': 'Home-Übersicht',
-    '3.png': 'Sensorenansicht',
-    '4.mp4': 'Live-Demonstration App-Konfiguration'
-};
 
-let userMediaConfig = null;
+const defaultAppMedia = [
+    {
+        file: '1.png',
+        type: 'image',
+        caption: 'Konfigurationsassistent',
+        description: 'Geführter Assistentsprozess zur Einrichtung des Pflanzentopfs'
+    },
+    {
+        file: '2.png',
+        type: 'image',
+        caption: 'Home-Übersicht',
+        description: 'Zentrale Hauptansicht aller verbundenen Pflanzentöpfe'
+    },
+    {
+        file: '3.png',
+        type: 'image',
+        caption: 'Sensorenansicht',
+        description: 'Echtzeit-Messwerte & historische Diagramme der Sensoren'
+    },
+    {
+        file: '4.mp4',
+        type: 'video',
+        caption: 'Live-Demonstration App-Konfiguration',
+        description: 'Kurzes Video zur Vorführung des Einrichtungsprozesses in der App'
+    }
+];
+
+let userMediaConfig = { app_media: defaultAppMedia };
 
 async function loadUserMediaConfig() {
     try {
-        const res = await fetch('./web/config/media.json');
+        const res = await fetch('./web/config/app-config/app-media.json');
         if (res.ok) {
             userMediaConfig = await res.json();
         }
@@ -264,7 +284,7 @@ let renderPdfPending = false;
 async function getPdfPage() {
     if (!cachedPdfPagePromise) {
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-        cachedPdfPagePromise = pdfjsLib.getDocument('./web/pdf/poster.pdf').promise.then(pdf => pdf.getPage(1));
+        cachedPdfPagePromise = pdfjsLib.getDocument('./web/pdf/poster/poster.pdf').promise.then(pdf => pdf.getPage(1));
     }
     return cachedPdfPagePromise;
 }
@@ -418,11 +438,11 @@ function renderRepoAndApp(data) {
         const iconSrc = `./repo/com.example.studienprojekt/en-US/icon.png`;
         if (iconEl) {
             iconEl.src = iconSrc;
-            iconEl.onerror = () => { iconEl.src = `./web/images/repo_icon.png`; };
+            iconEl.onerror = () => { iconEl.src = `./web/images/app-images/repo_icon.png`; };
         }
         if (navIconEl) {
             navIconEl.src = iconSrc;
-            navIconEl.onerror = () => { navIconEl.src = `./web/images/repo_icon.png`; };
+            navIconEl.onerror = () => { navIconEl.src = `./web/images/app-images/repo_icon.png`; };
         }
         if (faviconEl) {
             faviconEl.href = iconSrc;
@@ -492,19 +512,21 @@ function renderScreenshots(app) {
             const src = isVid ? `./web/videos/app-videos/${item.file}` : `./repo/${pkgName}/en-US/phoneScreenshots/${item.file}`;
             const numMatch = item.file.match(/^(\d+)/);
             const num = numMatch ? parseInt(numMatch[1], 10) : (idx + 1);
+            const caption = item.caption || `Medium ${num}`;
             mediaList.push({
                 num: num,
                 type: isVid ? 'video' : 'image',
                 src: src,
                 filename: item.file,
-                caption: item.caption || `Medium ${num}`
+                caption: caption,
+                description: item.description || ''
             });
         });
     } else {
         screenshots.forEach(scr => {
             const match = scr.match(/^(\d+)/);
             const num = match ? parseInt(match[1], 10) : 999;
-            const caption = defaultMediaCaptions[scr] || `Screenshot ${num}`;
+            const caption = `Screenshot ${num}`;
             mediaList.push({
                 num: num,
                 type: 'image',
@@ -518,7 +540,7 @@ function renderScreenshots(app) {
         videoFiles.forEach(vid => {
             const match = vid.match(/^(\d+)/);
             const num = match ? parseInt(match[1], 10) : 999;
-            const caption = defaultMediaCaptions[vid] || `Demo Video ${num}`;
+            const caption = `Demo Video ${num}`;
             mediaList.push({
                 num: num,
                 type: 'video',
@@ -535,25 +557,28 @@ function renderScreenshots(app) {
     // 4. Render Gallery HTML
     galleryEl.innerHTML = mediaList.map((item, index) => {
         const captionHtml = item.caption ? `<span class="media-caption">${item.caption}</span>` : '';
+        const descriptionHtml = item.description ? `<span class="media-description">${item.description}</span>` : '';
         if (item.type === 'video') {
             return `
                 <div class="media-item-box">
-                    <div class="media-thumb-wrapper screenshot-thumb video-thumb" data-index="${index}" data-type="video" data-src="${item.src}" data-caption="${item.caption}">
+                    <div class="media-thumb-wrapper screenshot-thumb video-thumb" data-index="${index}" data-type="video" data-src="${item.src}" data-caption="${item.caption}" data-description="${item.description || ''}">
                         <video class="screenshot-thumb-video" src="${item.src}" muted playsinline controls controlsList="nodownload noplaybackrate noremoteplayback novolume" style="border: none; background: transparent; object-fit: contain;"></video>
                         <button class="video-expand-btn" title="In Vollbildansicht / Lightbox öffnen" aria-label="Vollbildansicht">
                             <i class="fas fa-expand"></i>
                         </button>
                     </div>
                     ${captionHtml}
+                    ${descriptionHtml}
                 </div>
             `;
         } else {
             return `
                 <div class="media-item-box">
-                    <div class="media-thumb-wrapper screenshot-thumb" data-index="${index}" data-type="image" data-src="${item.src}" data-caption="${item.caption}" title="Bild in Vollbild anzeigen">
+                    <div class="media-thumb-wrapper screenshot-thumb" data-index="${index}" data-type="image" data-src="${item.src}" data-caption="${item.caption}" data-description="${item.description || ''}" title="Bild in Vollbild anzeigen">
                         <img class="screenshot-thumb-img" src="${item.src}" alt="${item.caption}" onerror="this.parentElement.parentElement.style.display='none'">
                     </div>
                     ${captionHtml}
+                    ${descriptionHtml}
                 </div>
             `;
         }
@@ -640,7 +665,7 @@ function initLightbox(customMediaList) {
     const prevBtn = document.getElementById('lightbox-prev');
     const nextBtn = document.getElementById('lightbox-next');
     const counterEl = document.getElementById('lightbox-counter');
-    const thumbWrappers = Array.from(document.querySelectorAll('.media-thumb-wrapper, .screenshot-thumb'));
+    const thumbWrappers = Array.from(document.querySelectorAll('.media-thumb-wrapper'));
 
     if (!modal) return;
 
@@ -650,20 +675,25 @@ function initLightbox(customMediaList) {
         screenshotList = thumbWrappers.map(w => {
             const isVid = w.classList.contains('video-thumb') || w.tagName.toLowerCase() === 'video' || (w.getAttribute('data-type') === 'video');
             const src = w.getAttribute('data-src') || w.src || w.querySelector('img, video')?.src;
+            const caption = w.getAttribute('data-caption') || '';
+            const description = w.getAttribute('data-description') || '';
             return {
                 type: isVid ? 'video' : 'image',
-                src: src
+                src: src,
+                caption: caption,
+                description: description
             };
         });
     }
 
     thumbWrappers.forEach((wrapper, idx) => {
+        const itemIdx = wrapper.hasAttribute('data-index') ? parseInt(wrapper.getAttribute('data-index'), 10) : idx;
         const expandBtn = wrapper.querySelector('.video-expand-btn');
         if (expandBtn) {
             expandBtn.onclick = (e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                currentScreenshotIndex = idx;
+                currentScreenshotIndex = itemIdx;
                 updateLightboxMedia();
                 modal.classList.add('active');
             };
@@ -672,14 +702,14 @@ function initLightbox(customMediaList) {
         if (!wrapper.classList.contains('video-thumb')) {
             wrapper.onclick = (e) => {
                 e.stopPropagation();
-                currentScreenshotIndex = idx;
+                currentScreenshotIndex = itemIdx;
                 updateLightboxMedia();
                 modal.classList.add('active');
             };
         } else {
             wrapper.ondblclick = (e) => {
                 e.stopPropagation();
-                currentScreenshotIndex = idx;
+                currentScreenshotIndex = itemIdx;
                 updateLightboxMedia();
                 modal.classList.add('active');
             };
@@ -689,14 +719,27 @@ function initLightbox(customMediaList) {
     function updateLightboxMedia() {
         if (screenshotList.length === 0) return;
         const currentItem = screenshotList[currentScreenshotIndex];
+        if (!currentItem) return;
+
         const mediaSrc = typeof currentItem === 'string' ? currentItem : currentItem.src;
-        const mediaType = typeof currentItem === 'object' && currentItem.type ? currentItem.type : (mediaSrc.endsWith('.mp4') ? 'video' : 'image');
-        const captionText = typeof currentItem === 'object' && currentItem.caption ? currentItem.caption : (defaultMediaCaptions[mediaSrc.split('/').pop()] || '');
+        const mediaType = typeof currentItem === 'object' && currentItem.type ? currentItem.type : (mediaSrc && mediaSrc.endsWith('.mp4') ? 'video' : 'image');
+        
+        const filename = typeof currentItem === 'object' && currentItem.filename ? currentItem.filename : (mediaSrc ? mediaSrc.split('/').pop() : '');
+        const configItem = (userMediaConfig && Array.isArray(userMediaConfig.app_media)) ? userMediaConfig.app_media.find(m => m.file === filename) : null;
+
+        const captionText = (typeof currentItem === 'object' && currentItem.caption) ? currentItem.caption : (configItem && configItem.caption ? configItem.caption : '');
+        const descriptionText = (typeof currentItem === 'object' && currentItem.description) ? currentItem.description : (configItem && configItem.description ? configItem.description : '');
 
         const captionEl = document.getElementById('lightbox-caption');
         if (captionEl) {
             captionEl.textContent = captionText;
             captionEl.style.display = captionText ? 'block' : 'none';
+        }
+
+        const descriptionEl = document.getElementById('lightbox-description');
+        if (descriptionEl) {
+            descriptionEl.textContent = descriptionText;
+            descriptionEl.style.display = descriptionText ? 'block' : 'none';
         }
 
         if (mediaType === 'video') {
@@ -835,7 +878,7 @@ function debounce(func, wait) {
 
 // Helper to open PDF in new tab
 function openPdfFullscreen() {
-    window.open('./web/pdf/poster.pdf', '_blank');
+    window.open('./web/pdf/poster/poster.pdf', '_blank');
 }
 
 // Helper to reset poster scale by reloading page
