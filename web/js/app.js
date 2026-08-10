@@ -283,7 +283,13 @@ let renderPdfPending = false;
 
 async function getPdfPage() {
     if (!cachedPdfPagePromise) {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        try {
+            const workerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            const blob = new Blob([`importScripts("${workerUrl}");`], { type: 'application/javascript' });
+            pdfjsLib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob);
+        } catch (e) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
         cachedPdfPagePromise = pdfjsLib.getDocument('./web/pdf/poster/poster.pdf').promise.then(pdf => pdf.getPage(1));
     }
     return cachedPdfPagePromise;
@@ -319,7 +325,9 @@ async function renderPdfPoster() {
 
         const unscaledViewport = page.getViewport({ scale: 1.0 });
         const baseScale = targetWidth / unscaledViewport.width;
-        const outputScale = window.devicePixelRatio || 1;
+        // High-DPI supersampling (at least 2x quality factor) for razor-sharp vector text and graphics
+        const dpr = window.devicePixelRatio || 1;
+        const outputScale = Math.max(dpr, 2.0);
 
         // Bakes high-DPI scaling and native page rotation into viewport cleanly
         const viewport = page.getViewport({ scale: baseScale * outputScale, rotation: page.rotate || 0 });
