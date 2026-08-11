@@ -955,3 +955,44 @@ function copyShareUrl() {
     });
 }
 
+// ==========================================================================
+// CAD 3D MODEL VIEWER CONTROLS
+// ==========================================================================
+let isCadExploded = false;
+
+function toggleCadExplosion() {
+    const viewer = document.querySelector('#cad-topf-viewer');
+    const toggleBtn = document.querySelector('#btn-toggle-explosion');
+    if (!viewer) return;
+
+    isCadExploded = !isCadExploded;
+
+    if (isCadExploded) {
+        viewer.src = './web/models/cad/topf-explosion.glb';
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '<i class="fas fa-cube"></i> Explosionsansicht Aus';
+        }
+        showToast('3D-Explosionsansicht geladen 💥');
+    } else {
+        viewer.src = './web/models/cad/topf-geschlossen.glb';
+        if (toggleBtn) {
+            toggleBtn.innerHTML = '<i class="fas fa-layer-group"></i> Explosionsansicht An';
+        }
+        showToast('Geschlossenes 3D-Topfmodell geladen 🪴');
+    }
+}
+
+function resetCadCamera() {
+    const viewer = document.querySelector('#cad-topf-viewer');
+    if (!viewer) return;
+
+    if (typeof viewer.resetTurntable === 'function') {
+        viewer.resetTurntable();
+    }
+    viewer.cameraOrbit = 'auto auto auto';
+    viewer.cameraTarget = 'auto auto auto';
+    viewer.fieldOfView = 'auto';
+    showToast('Kameraansicht zurückgesetzt 🔄');
+}
+
+

@@ -8,6 +8,13 @@
       "file": "web/sections/poster.html"
     },
     {
+      "id": "cad-darstellung",
+      "title": "CAD-Darstellung",
+      "subtitle": "Interaktives 3D-CAD-Modell & Topf-Konstruktion",
+      "icon": "fa-cube",
+      "file": "web/sections/cad-darstellung.html"
+    },
+    {
       "id": "app-showcase",
       "title": "App-Showcase",
       "subtitle": "Detaillierter App-Überblick & Dokumentation",
