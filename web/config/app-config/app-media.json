@@ -3,26 +3,80 @@
     {
       "file": "1.png",
       "type": "image",
-      "caption": "Konfigurationsassistent",
-      "description": "Geführter Assistentsprozess zur Einrichtung des Pflanzentopfs"
+      "caption": "Home-Ansicht",
+      "description": "Startbildschirm bei App Start (V1)"
     },
     {
       "file": "2.png",
       "type": "image",
-      "caption": "Home-Übersicht",
-      "description": "Zentrale Hauptansicht aller verbundenen Pflanzentöpfe"
+      "caption": "Home-Ansicht",
+      "description": "Startbildschirm bei App Start (V2)"
     },
     {
       "file": "3.png",
       "type": "image",
-      "caption": "Sensorenansicht",
-      "description": "Echtzeit-Messwerte & historische Diagramme der Sensoren"
+      "caption": "Steuerungsansicht",
+      "description": "Steuerung der Uploadfrequenz und Setzten des Pflanzenprofils des Topfes"
     },
     {
-      "file": "4.mp4",
+      "file": "4.png",
+      "type": "image",
+      "caption": "Pflanzenprofil-Ansicht",
+      "description": "Anpassmöglichkeit Sollwerte und Übertragung auf Topf"
+    },
+    {
+      "file": "5.png",
+      "type": "image",
+      "caption": "Sensoransicht",
+      "description": "Messwerte filterbar nach Gerät und Zeit inklusive Vortagsvergleich"
+    },
+    {
+      "file": "6.png",
+      "type": "image",
+      "caption": "Notification Viewer",
+      "description": "Anzeige der Benachrichtigungen. Filterbar nach Gerät und Zeit"
+    },
+    {
+      "file": "7.png",
+      "type": "image",
+      "caption": "Geräteverknüpfung",
+      "description": "Von hier aus lassen sich Bluemntöpfe hinzufügen"
+    },
+    {
+      "file": "8.png",
+      "type": "image",
+      "caption": "Account & Geräte",
+      "description": "Verwaltung  des Accounts und verbundener Geräte"
+    },
+    {
+      "file": "9.png",
+      "type": "image",
+      "caption": "Sidebar",
+      "description": "Sidebar für den schnellen Zugriff zu den wichtigsten Funktionen"
+    },
+    {
+      "file": "Video_HomeShowcase.mp4",
       "type": "video",
-      "caption": "Live-Demonstration App-Konfiguration",
-      "description": "Kurzes Video zur Vorführung des Einrichtungsprozesses in der App"
+      "caption": "Video Home-Ansicht",
+      "description": "Zeigt die unterschiedlichen Darstellungsmöglichkeiten der Home-Ansicht"
+    },
+    {
+      "file": "Video_Konfigurationsassistent.mp4",
+      "type": "video",
+      "caption": "Video Konfigurationsassistent",
+      "description": "Kernelemente der Einrichtung inklusive UI und Benachrichtigungseinstellungen"
+    },
+    {
+      "file": "Video_Provisioning.mp4",
+      "type": "video",
+      "caption": "Video Provisioning",
+      "description": "Hinzufügen eines Blumentopfes"
+    },
+    {
+      "file": "Video_UebersichtShowcase.mp4",
+      "type": "video",
+      "caption": "Video Übersicht Showcase",
+      "description": "Live-Darstellung zentraler Bedienelemente der App"
     }
   ]
 }

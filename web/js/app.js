@@ -31,10 +31,64 @@ const defaultAppMedia = [
         description: 'Echtzeit-Messwerte & historische Diagramme der Sensoren'
     },
     {
-        file: '4.mp4',
+        file: '4.png',
+        type: 'image',
+        caption: 'Screenshot 4',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: '5.png',
+        type: 'image',
+        caption: 'Screenshot 5',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: '6.png',
+        type: 'image',
+        caption: 'Screenshot 6',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: '7.png',
+        type: 'image',
+        caption: 'Screenshot 7',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: '8.png',
+        type: 'image',
+        caption: 'Screenshot 8',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: '9.png',
+        type: 'image',
+        caption: 'Screenshot 9',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: 'Video_HomeShowcase.mp4',
         type: 'video',
-        caption: 'Live-Demonstration App-Konfiguration',
-        description: 'Kurzes Video zur Vorführung des Einrichtungsprozesses in der App'
+        caption: 'Demo-Video Home Showcase',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: 'Video_Konfigurationsassistent.mp4',
+        type: 'video',
+        caption: 'Demo-Video Konfigurationsassistent',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: 'Video_Provisioning.mp4',
+        type: 'video',
+        caption: 'Demo-Video Provisioning',
+        description: 'Beschreibung folgt...'
+    },
+    {
+        file: 'Video_UebersichtShowcase.mp4',
+        type: 'video',
+        caption: 'Demo-Video Übersicht Showcase',
+        description: 'Beschreibung folgt...'
     }
 ];
 
@@ -524,6 +578,7 @@ function renderScreenshots(app) {
             const caption = item.caption || `Medium ${num}`;
             mediaList.push({
                 num: num,
+                sortIndex: idx,
                 type: isVid ? 'video' : 'image',
                 src: src,
                 filename: item.file,
@@ -531,6 +586,7 @@ function renderScreenshots(app) {
                 description: item.description || ''
             });
         });
+        mediaList.sort((a, b) => a.sortIndex - b.sortIndex);
     } else {
         screenshots.forEach(scr => {
             const match = scr.match(/^(\d+)/);
@@ -538,30 +594,30 @@ function renderScreenshots(app) {
             const caption = `Screenshot ${num}`;
             mediaList.push({
                 num: num,
+                sortIndex: num,
                 type: 'image',
                 src: `./repo/${pkgName}/en-US/phoneScreenshots/${scr}`,
                 filename: scr,
-                caption: caption
+                caption: caption,
+                description: 'Beschreibung folgt...'
             });
         });
 
-        const videoFiles = ['4.mp4'];
-        videoFiles.forEach(vid => {
-            const match = vid.match(/^(\d+)/);
-            const num = match ? parseInt(match[1], 10) : 999;
-            const caption = `Demo Video ${num}`;
+        const videoFiles = ['Video_HomeShowcase.mp4', 'Video_Konfigurationsassistent.mp4', 'Video_Provisioning.mp4', 'Video_UebersichtShowcase.mp4'];
+        videoFiles.forEach((vid, vIdx) => {
+            const cleanName = vid.replace('Video_', '').replace('.mp4', '');
             mediaList.push({
-                num: num,
+                num: 10 + vIdx,
+                sortIndex: 100 + vIdx,
                 type: 'video',
                 src: `./web/videos/app-videos/${vid}`,
                 filename: vid,
-                caption: caption
+                caption: `Demo-Video ${cleanName}`,
+                description: 'Beschreibung folgt...'
             });
         });
+        mediaList.sort((a, b) => a.sortIndex - b.sortIndex);
     }
-
-    // 3. Sort media items numerically by filename prefix (1.png, 2.png, 3.png, 4.mp4, ...)
-    mediaList.sort((a, b) => a.num - b.num);
 
     // 4. Render Gallery HTML
     galleryEl.innerHTML = mediaList.map((item, index) => {
