@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initCopyButtons();
     initLightbox();
     initPermissionsToggle();
+    initCommStructureToggle();
     initDocsModalEvents();
     initShareModal();
     initScrollSpy();
@@ -864,6 +865,23 @@ function initPermissionsToggle() {
         header.addEventListener('click', () => {
             const isHidden = list.style.display === 'none';
             list.style.display = isHidden ? 'flex' : 'none';
+            if (icon) {
+                icon.className = isHidden ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
+            }
+        });
+    }
+}
+
+// Kommunikationsstruktur Accordion Toggle
+function initCommStructureToggle() {
+    const header = document.getElementById('comm-structure-toggle-header');
+    const body = document.getElementById('dyn-comm-structure-body');
+    const icon = document.getElementById('comm-structure-toggle-icon');
+
+    if (header && body) {
+        header.addEventListener('click', () => {
+            const isHidden = body.style.display === 'none';
+            body.style.display = isHidden ? 'block' : 'none';
             if (icon) {
                 icon.className = isHidden ? 'fas fa-chevron-up' : 'fas fa-chevron-down';
             }

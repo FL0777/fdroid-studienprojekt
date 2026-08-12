@@ -684,6 +684,48 @@ video::-webkit-media-controls-mute-button {
     color: #475569;
 }
 
+/* Kommunikationsstruktur Accordion */
+.comm-structure-box {
+    margin: 20px 30px 30px;
+}
+
+.comm-structure-body {
+    padding: 0 20px 20px;
+}
+
+.comm-structure-desc {
+    margin-bottom: 16px;
+    color: #475569;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.comm-diagram-container {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: 0 !important;
+    display: block !important;
+    position: relative !important;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    background: #FFFFFF;
+    box-shadow: var(--shadow-sm);
+    cursor: default;
+}
+
+.comm-diagram-img,
+div.media-thumb-wrapper.comm-diagram-container img.comm-diagram-img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    display: block !important;
+    object-fit: contain !important;
+    transform: none !important;
+}
+
 .perm-icon {
     color: var(--primary-color);
     width: 20px;
@@ -1389,6 +1431,21 @@ video::-webkit-media-controls-mute-button {
 
     .permissions-box {
         margin: 0 20px 20px;
+    }
+
+    .comm-structure-box {
+        margin: 15px 20px 20px;
+    }
+
+    .comm-diagram-container,
+    div.media-thumb-wrapper.comm-diagram-container,
+    .comm-diagram-img,
+    div.media-thumb-wrapper.comm-diagram-container img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        display: block !important;
+        transform: none !important;
     }
 
     .repo-card {

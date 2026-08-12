@@ -12,29 +12,29 @@ Diese App verwendet Open-Source-Bibliotheken aus dem Android-, Kotlin- und Backe
 
 | Bibliothek | Lizenz | Copyright |
 | --- | --- | --- |
-| AndroidX Libraries | Apache License 2.0 | Google LLC |
-| Android CameraX | Apache License 2.0 | Google LLC |
-| Android Work Manager | Apache License 2.0 | Google LLC |
-| Material Components for Android | Apache License 2.0 | Google LLC |
-| Firebase Cloud Messaging (FCM) & Analytics | Apache License 2.0 | Google LLC |
-| ZXing & ML Kit Barcode Scanning | Apache License 2.0 | Google LLC / ZXing Authors |
-| Room Persistence Library | Apache License 2.0 | Google LLC |
+| AndroidX Libraries | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google LLC |
+| Android CameraX | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google LLC |
+| Android Work Manager | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google LLC |
+| Material Components for Android | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google LLC |
+| Firebase Cloud Messaging (FCM) & Analytics | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google LLC |
+| ZXing & ML Kit Barcode Scanning | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google LLC / ZXing Authors |
+| Room Persistence Library | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Google LLC |
 
 ### JetBrains-Bibliotheken
 
 | Bibliothek | Lizenz | Copyright |
 | --- | --- | --- |
-| Kotlin & Kotlinx Serialization | Apache License 2.0 | JetBrains s.r.o. |
-| Ktor Client | Apache License 2.0 | JetBrains s.r.o. |
+| Kotlin & Kotlinx Serialization | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | JetBrains s.r.o. |
+| Ktor Client | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | JetBrains s.r.o. |
 
 ### Weitere Open-Source-Bibliotheken
 
 | Bibliothek | Lizenz | Copyright |
 | --- | --- | --- |
-| Supabase Kotlin SDK | Apache License 2.0 | Supabase |
-| MPAndroidChart | Apache License 2.0 | Philipp Jahoda |
-| Coil Image Loading | Apache License 2.0 | Coil Contributors |
-| PhotoView | Apache License 2.0 | Chris Banes |
+| Supabase Kotlin SDK | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Supabase |
+| MPAndroidChart | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Philipp Jahoda |
+| Coil Image Loading | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Coil Contributors |
+| PhotoView | [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) | Chris Banes |
 
 ---
 
@@ -60,7 +60,7 @@ Weitere Informationen zu Creative Commons-Lizenzen finden Sie unter: https://cre
 
 ## Vollständige Lizenztexte
 
-- Apache License 2.0: siehe [LICENSE](LICENSE)
+- Apache License 2.0: siehe [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - Projektinformationen: siehe die Projekt- und Lizenzhinweise in der App
 
 ---
@@ -69,7 +69,3 @@ Weitere Informationen zu Creative Commons-Lizenzen finden Sie unter: https://cre
 
 Diese Lizenzen werden auch in der App angezeigt unter:
 Einstellungen → Über → Lizenzen
-
-## Hinweis
-
-Diese Liste sollte bei Änderungen an den Abhängigkeiten aktualisiert werden.

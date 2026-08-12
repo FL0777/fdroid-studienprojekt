@@ -1,12 +1,11 @@
 # Changelog
 
-## [0.1.4] - [unreleased]
+## [1.0.0] - 2026-08-12
 
 ### Hinzugefügt
+- **Benachrichtigungen:** Spezifische Benachrichtigungstöne und Vibrationsmuster inklusive selbst aufgezeichneter Vibrationspattern hinzugefügt.
+- **Sensordaten-Visualisierung:** Neue Ansichten für Tage, Wochen und Monate sowie eine Funktion zum Zwei-Tages-Vergleich implementiert.
 
-### Geändert
-
-### Behandelte Fehler (Bugfixes)
 
 ## [0.1.3] - 2026-08-04
 

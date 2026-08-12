@@ -1,12 +1,11 @@
 # Changelog
 
-## [0.1.4] - [unreleased]
+## [1.0.0] - 2026-08-12
 
 ### Added
+- **Notifications:** Added specific notification sounds and vibration patterns, including self-recorded vibration patterns.
+- **Sensor Data Visualization:** Implemented new views for days, weeks, and months, along with a two-day comparison function.
 
-### Changed
-
-### Bug Fixes
 
 ## [0.1.3] - 2026-08-04
 

@@ -43,7 +43,7 @@
             <ul class="nav-links">
                 <li><a href="javascript:void(0)" onclick="openDocsModal('about')" class="nav-link">Über</a></li>
                 <li><a href="#poster" class="nav-link">Projekt Poster</a></li>
-                <li><a href="#cad-darstellung" class="nav-link">CAD-Darstellung</a></li>
+                <li><a href="#cad-darstellung" class="nav-link">Topf-Darstellung</a></li>
                 <li><a href="#app-showcase" class="nav-link">App-Showcase</a></li>
                 <li><a href="#app-installation" class="nav-link">App-Installation</a></li>
                 <li>
@@ -78,7 +78,7 @@
                     <i class="fas fa-file-pdf"></i> Projekt Poster
                 </a>
                 <a href="#cad-darstellung" class="tab-btn">
-                    <i class="fas fa-cube"></i> CAD-Darstellung
+                    <i class="fas fa-cube"></i> Topf-Darstellung
                 </a>
                 <a href="#app-showcase" class="tab-btn">
                     <i class="fas fa-mobile-alt"></i> App-Showcase
@@ -124,7 +124,7 @@
                 <div class="section-header-bar">
                     <h2 class="section-header-title">
                         <i class="fas fa-cube" style="color: var(--primary-color);"></i>
-                        <span>CAD-Darstellung</span>
+                        <span>Topf-Darstellung</span>
                     </h2>
                     <span class="section-header-subtitle">Interaktives 3D-CAD-Modell &amp; Topf-Konstruktion</span>
                 </div>
@@ -337,7 +337,7 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
                     <div class="doc-card" onclick="openDocsModal('changelog')">
                         <div>
                             <div class="doc-card-title"><i class="fas fa-history" style="color: var(--primary-color);"></i> Changelog</div>
-                            <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis v0.1.3 mit allen Änderungen und Bugfixes.</div>
+                            <div class="doc-card-desc">Vollständige Versionshistorie von v0.0.1 bis zur aktuellen Version mit allen Änderungen und Bugfixes.</div>
                         </div>
                         <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
                     </div>
@@ -345,7 +345,7 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
                     <div class="doc-card" onclick="openDocsModal('readme')">
                         <div>
                             <div class="doc-card-title"><i class="fas fa-file-lines" style="color: var(--primary-color);"></i> App-Handbuch (README)</div>
-                            <div class="doc-card-desc">Vollständiges Handbuch inkl. Installation, Bauanleitung, Supabase Backend & Architektur.</div>
+                            <div class="doc-card-desc">Handbuch mit Einblick in Appfunktionalitäten und Architektur.</div>
                         </div>
                         <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
                     </div>
@@ -356,6 +356,22 @@ Studienprojekt: Erstellung eines automatisierten Systems zur Pflanzenbewässerun
                             <div class="doc-card-desc">Übersicht der verwendeten Open-Source Bibliotheken, Lizenzen & Wikimedia Commons Attributierungen.</div>
                         </div>
                         <span style="font-weight: 600; font-size: 0.85rem; color: var(--primary-color);">Anzeigen &rarr;</span>
+                    </div>
+                </div>
+
+                <!-- Kommunikationsstruktur Accordion -->
+                <div class="permissions-box comm-structure-box">
+                    <div id="comm-structure-toggle-header" class="permissions-header">
+                        <span><i class="fas fa-network-wired"></i> Kommunikationsstruktur</span>
+                        <i id="comm-structure-toggle-icon" class="fas fa-chevron-down"></i>
+                    </div>
+                    <div id="dyn-comm-structure-body" class="comm-structure-body" style="display: none;">
+                        <p class="comm-structure-desc">
+                            System- &amp; Kommunikationsstruktur des Smart Plant Pot Projekts (Android App, ESP32 Microcontroller, Supabase PostgreSQL Backend &amp; Cloud Services).
+                        </p>
+                        <div class="comm-diagram-container">
+                            <img class="comm-diagram-img" src="./web/images/app-images/Kommunikationsstruktur.png" alt="Kommunikationsstruktur Diagramm">
+                        </div>
                     </div>
                 </div>
 

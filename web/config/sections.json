@@ -9,7 +9,7 @@
     },
     {
       "id": "cad-darstellung",
-      "title": "CAD-Darstellung",
+      "title": "Topf-Darstellung",
       "subtitle": "Interaktives 3D-CAD-Modell & Topf-Konstruktion",
       "icon": "fa-cube",
       "file": "web/sections/cad-darstellung.html"
